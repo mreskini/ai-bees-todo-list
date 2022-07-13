@@ -1,6 +1,8 @@
 # Overview
 
-This is a todo list application for AI-Bees. This document explains some of the development decisions.
+This is a to-do list application for AI-Bees. This document explains some of the development decisions. This project is not a big or large-scale project and is a small one, but to use the best practices of big projects, I treat this application as a big one and use the well-known best practices though it's small by nature.
+
+On the other hand, I decided not delete the merged branches so that you can check the process and evaluate better.
 
 # Git Flow and Commit Messages
 
