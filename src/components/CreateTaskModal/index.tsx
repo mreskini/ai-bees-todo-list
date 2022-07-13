@@ -8,7 +8,7 @@ import {
     TextField,
 } from "@mui/material"
 import { FC, useState } from "react"
-import { useApp } from "../../contexts/AppContext"
+import { Priority, useApp } from "../../contexts/AppContext"
 import styles from "./CreateTaskModal.module.scss"
 
 type Props = {
@@ -22,12 +22,25 @@ const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
     const [titleValue, setTitleValue] = useState<string>("")
     const [descriptionValue, setDescriptionValue] = useState<string>("")
     const [targetsValue, setTargetsValue] = useState<string>("")
-    const [taskPriority, setTaskPriority] = useState<string>("")
+    const [taskPriority, setTaskPriority] = useState<Priority>("LOW")
 
     // Methods
     const addToTasksButtonClicked = () => {
-        addNewTask(titleValue, descriptionValue, targetsValue, taskPriority)
+        addNewTask(
+            titleValue,
+            descriptionValue,
+            targetsValue,
+            taskPriority,
+            "OPEN"
+        )
         handleClose()
+    }
+    const getPriorityByNumber = (number: string) => {
+        if (number === "1") return "LOW"
+        if (number === "2") return "MEDIUM"
+        if (number === "3") return "HIGH"
+
+        return "LOW"
     }
 
     // Render
@@ -68,20 +81,22 @@ const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
                         aria-labelledby="Task priority"
                         className={styles.priority}
                         value={taskPriority}
-                        onChange={e => setTaskPriority(e.target.value)}
+                        onChange={e =>
+                            setTaskPriority(getPriorityByNumber(e.target.value))
+                        }
                     >
                         <FormControlLabel
-                            value="low"
+                            value="1"
                             control={<Radio />}
                             label="Low"
                         />
                         <FormControlLabel
-                            value="medium"
+                            value="2"
                             control={<Radio />}
                             label="Medium"
                         />
                         <FormControlLabel
-                            value="hight"
+                            value="3"
                             control={<Radio />}
                             label="High"
                         />

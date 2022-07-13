@@ -1,4 +1,4 @@
-import { Button, Grid, Paper, Typography } from "@mui/material"
+import { Button, Grid, Paper } from "@mui/material"
 import { useState } from "react"
 import { useApp } from "../../contexts/AppContext"
 import CreateTaskModal from "../CreateTaskModal"
