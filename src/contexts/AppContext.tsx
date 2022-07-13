@@ -4,9 +4,15 @@ type Props = {
     children: JSX.Element
 }
 
+export type Status = "OPEN" | "DONE"
+export type Priority = "HIGH" | "MEDIUM" | "LOW"
+
 export type Task = {
     title: string
     description: string
+    targets: string
+    priority: Priority
+    status: Status
 }
 
 interface AppContextInterface {
@@ -16,19 +22,15 @@ interface AppContextInterface {
         title: string,
         description: string,
         targets: string,
-        priority: string
+        priority: Priority,
+        status: Status
     ): void
 }
 
 const initialContextValue = {
     tasksList: [],
     setTasksList: (list: Task[]) => undefined,
-    addNewTask: (
-        title: string,
-        description: string,
-        targets: string,
-        priority: string
-    ) => undefined,
+    addNewTask: () => undefined,
 }
 
 const AppContext = createContext<AppContextInterface>(initialContextValue)
@@ -52,12 +54,16 @@ const AppProvider: React.FC<Props> = ({ children }) => {
         title: string,
         description: string,
         targets: string,
-        priority: string
+        priority: Priority,
+        status: Status
     ): void => {
         setTasksList([
             {
                 title,
                 description,
+                targets,
+                priority,
+                status,
             },
             ...tasksList,
         ])
