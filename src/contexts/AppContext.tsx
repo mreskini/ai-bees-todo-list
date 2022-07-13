@@ -1,10 +1,9 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 
 type Props = {
     children: JSX.Element
 }
 
-export type Priority = {}
 export type Task = {
     title: string
     description: string
@@ -13,11 +12,23 @@ export type Task = {
 interface AppContextInterface {
     tasksList: Task[]
     setTasksList(list: Task[]): void
+    addNewTask(
+        title: string,
+        description: string,
+        targets: string,
+        priority: string
+    ): void
 }
 
 const initialContextValue = {
     tasksList: [],
     setTasksList: (list: Task[]) => undefined,
+    addNewTask: (
+        title: string,
+        description: string,
+        targets: string,
+        priority: string
+    ) => undefined,
 }
 
 const AppContext = createContext<AppContextInterface>(initialContextValue)
@@ -37,11 +48,33 @@ const AppProvider: React.FC<Props> = ({ children }) => {
     const [tasksList, setTasksList] = useState<Task[]>([])
 
     // Methods
+    const addNewTask = (
+        title: string,
+        description: string,
+        targets: string,
+        priority: string
+    ): void => {
+        setTasksList([
+            {
+                title,
+                description,
+            },
+            ...tasksList,
+        ])
+    }
+
+    useEffect(() => {
+        console.log("Tasks List", tasksList)
+    }, [tasksList])
 
     // Binding
     const value = {
+        // States
         tasksList,
         setTasksList,
+
+        // Methods
+        addNewTask,
     }
 
     // Render

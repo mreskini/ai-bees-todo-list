@@ -6,9 +6,9 @@ import {
     Radio,
     RadioGroup,
     TextField,
-    Typography,
 } from "@mui/material"
-import { FC } from "react"
+import { FC, useState } from "react"
+import { useApp } from "../../contexts/AppContext"
 import styles from "./CreateTaskModal.module.scss"
 
 type Props = {
@@ -17,6 +17,20 @@ type Props = {
 }
 
 const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
+    // States and Hooks
+    const { addNewTask } = useApp()
+    const [titleValue, setTitleValue] = useState<string>("")
+    const [descriptionValue, setDescriptionValue] = useState<string>("")
+    const [targetsValue, setTargetsValue] = useState<string>("")
+    const [taskPriority, setTaskPriority] = useState<string>("")
+
+    // Methods
+    const addToTasksButtonClicked = () => {
+        addNewTask(titleValue, descriptionValue, targetsValue, taskPriority)
+        handleClose()
+    }
+
+    // Render
     return (
         <div className={styles.tasks}>
             <Modal
@@ -31,22 +45,30 @@ const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
                         label="Task title"
                         className={styles.title}
                         variant="outlined"
+                        value={titleValue}
+                        onChange={e => setTitleValue(e.target.value)}
                     />
                     <TextField
                         label="Task description"
                         className={styles.description}
                         rows={5}
                         multiline
+                        value={descriptionValue}
+                        onChange={e => setDescriptionValue(e.target.value)}
                     />
                     <TextField
                         label="Gift and KPI for this task ;)"
                         className={styles.targets}
                         variant="outlined"
+                        value={targetsValue}
+                        onChange={e => setTargetsValue(e.target.value)}
                     />
                     <RadioGroup
                         row
                         aria-labelledby="Task priority"
                         className={styles.priority}
+                        value={taskPriority}
+                        onChange={e => setTaskPriority(e.target.value)}
                     >
                         <FormControlLabel
                             value="low"
@@ -72,7 +94,10 @@ const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
                         >
                             cancel
                         </Button>
-                        <Button variant="contained" onClick={handleClose}>
+                        <Button
+                            variant="contained"
+                            onClick={addToTasksButtonClicked}
+                        >
                             Add to Tasks
                         </Button>
                     </Box>
