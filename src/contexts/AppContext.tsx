@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useState } from "react"
+import { v4 as uuid } from "uuid"
 
 type Props = {
     children: JSX.Element
@@ -8,6 +9,7 @@ export type Status = "OPEN" | "DONE"
 export type Priority = "HIGH" | "MEDIUM" | "LOW"
 
 export type Task = {
+    token: string
     title: string
     description: string
     targets: string
@@ -59,6 +61,7 @@ const AppProvider: React.FC<Props> = ({ children }) => {
     ): void => {
         setTasksList([
             {
+                token: uuid(),
                 title,
                 description,
                 targets,
@@ -68,10 +71,6 @@ const AppProvider: React.FC<Props> = ({ children }) => {
             ...tasksList,
         ])
     }
-
-    useEffect(() => {
-        console.log("Tasks List", tasksList)
-    }, [tasksList])
 
     // Binding
     const value = {
