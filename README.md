@@ -5,17 +5,17 @@ This project uses [Conventional Commits](https://www.conventionalcommits.org/en/
 
 At the end, I didn't delete most of my branches so that you can check the naming conventions and usages.
 
-# Prettier - Code formatter
+# Prettier and ESLint
 
-This project uses Prettier as the code formatter to stop most of the debates over styles and is fully automatic. Here is the configuration file:
+This project uses Prettier and ESLint to stop most of the debates over styles and is fully automatic. Prettier is running as plugin for ESLint. Here is the configuration file:
 
 ```bash
 {
     "tabWidth": 4,
     "printWidth": 80,
     "arrowParens": "avoid",
-    "semi": false
+    "semi": false,
+    "endOfLine": "auto"
 }
-```
 
-All the files in this project are formatted via this tool.
+```
