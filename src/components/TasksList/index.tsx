@@ -3,25 +3,33 @@ import { useState } from "react"
 import { useApp } from "../../contexts/AppContext"
 import CreateTaskModal from "../CreateTaskModal"
 import FloatingAddButton from "../FloatingAddButton"
+import TaskDetailsModal from "../TaskDetailsModal"
 import styles from "./TasksList.module.scss"
 
 const TasksList = () => {
     // States and Hooks
     const { tasksList } = useApp()
     const showTasksList = tasksList.length > 0
-    const [isCreateNewTaskModalOpen, setIsCreateNewTaskModalOpen] =
-        useState(false)
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
+    const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false)
 
     // Methods
-    const handleOpen = () => setIsCreateNewTaskModalOpen(true)
-    const handleClose = () => setIsCreateNewTaskModalOpen(false)
+    const handleCreateModalOpen = () => setIsCreateModalOpen(true)
+    const handleCreateModalClose = () => setIsCreateModalOpen(false)
+
+    const handleDetailsModalOpen = () => setIsDetailsModalOpen(true)
+    const handleDetailsModalClose = () => setIsDetailsModalOpen(false)
 
     //   Render
     return (
         <div className={styles.tasks}>
             <CreateTaskModal
-                open={isCreateNewTaskModalOpen}
-                handleClose={handleClose}
+                open={isCreateModalOpen}
+                handleClose={handleCreateModalClose}
+            />
+            <TaskDetailsModal
+                open={isDetailsModalOpen}
+                handleClose={handleDetailsModalClose}
             />
             {showTasksList ? (
                 <Grid container alignItems="center" justifyContent="center">
@@ -30,74 +38,87 @@ const TasksList = () => {
                             .filter(task => task.status === "OPEN")
                             .map(({ title, description, priority }, index) => {
                                 return (
-                                    <Paper
+                                    <Button
                                         key={index}
-                                        variant="outlined"
-                                        elevation={1}
                                         className={styles.item}
+                                        onClick={handleDetailsModalOpen}
                                     >
-                                        <Grid
-                                            display="flex"
-                                            alignItems="center"
-                                            justifyContent="space-between"
+                                        <Paper
+                                            variant="outlined"
+                                            elevation={1}
+                                            className={styles["item-inner"]}
                                         >
-                                            <Grid>
-                                                <div className={styles.title}>
-                                                    {title}
-                                                </div>
-                                                <div
-                                                    className={
-                                                        styles.description
-                                                    }
-                                                >
-                                                    {description}
-                                                </div>
-                                            </Grid>
-                                            <Grid>
-                                                <div
-                                                    className={styles.priority}
-                                                >
-                                                    <div>{priority}</div>
+                                            <Grid
+                                                display="flex"
+                                                alignItems="center"
+                                                justifyContent="space-between"
+                                            >
+                                                <Grid>
                                                     <div
-                                                        className={`${
-                                                            styles.bullet
-                                                        } ${
-                                                            styles[
-                                                                priority ===
-                                                                "HIGH"
-                                                                    ? "bullet-high"
-                                                                    : priority ===
-                                                                      "MEDIUM"
-                                                                    ? "bullet-mid"
-                                                                    : "bullet-low"
-                                                            ]
-                                                        }`}
-                                                    ></div>
-                                                </div>
-                                                <div className={styles.actions}>
-                                                    <Button
-                                                        variant="contained"
-                                                        color="success"
+                                                        className={styles.title}
                                                     >
-                                                        Done Task
-                                                    </Button>
-                                                    <Button
-                                                        variant="contained"
-                                                        color="info"
+                                                        {title}
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            styles.description
+                                                        }
                                                     >
-                                                        Edit Task
-                                                    </Button>
-                                                </div>
+                                                        {description}
+                                                    </div>
+                                                </Grid>
+                                                <Grid>
+                                                    <div
+                                                        className={
+                                                            styles.priority
+                                                        }
+                                                    >
+                                                        <div>{priority}</div>
+                                                        <div
+                                                            className={`${
+                                                                styles.bullet
+                                                            } ${
+                                                                styles[
+                                                                    priority ===
+                                                                    "HIGH"
+                                                                        ? "bullet-high"
+                                                                        : priority ===
+                                                                          "MEDIUM"
+                                                                        ? "bullet-mid"
+                                                                        : "bullet-low"
+                                                                ]
+                                                            }`}
+                                                        ></div>
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            styles.actions
+                                                        }
+                                                    >
+                                                        <Button
+                                                            variant="contained"
+                                                            color="success"
+                                                        >
+                                                            Done Task
+                                                        </Button>
+                                                        <Button
+                                                            variant="contained"
+                                                            color="info"
+                                                        >
+                                                            Edit Task
+                                                        </Button>
+                                                    </div>
+                                                </Grid>
                                             </Grid>
-                                        </Grid>
-                                    </Paper>
+                                        </Paper>
+                                    </Button>
                                 )
                             })}
                     </Grid>
-                    <FloatingAddButton handleOpen={handleOpen} />
+                    <FloatingAddButton handleOpen={handleCreateModalOpen} />
                 </Grid>
             ) : (
-                <Button variant="contained" onClick={handleOpen}>
+                <Button variant="contained" onClick={handleCreateModalOpen}>
                     Create Your First Task ;)
                 </Button>
             )}
