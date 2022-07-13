@@ -1,7 +1,13 @@
-import React from "react"
+import { Button } from "@mui/material"
+import Header from "./components/Header"
 
 const App = () => {
-    return <div>Home Page</div>
+    return (
+        <>
+            <Header />
+            <Button variant="contained">Create Your First Task ;)</Button>
+        </>
+    )
 }
 
 export default App
