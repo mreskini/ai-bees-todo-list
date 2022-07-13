@@ -22,7 +22,11 @@ const initialContextValue = {
 
 const AppContext = createContext<AppContextInterface>(initialContextValue)
 
+// It's better to export a hook and use that instead of using the Context itself in other files.
+// (It's one of them best practices)
 export const useApp = () => {
+    // One of the best practices about context is to make sure that the hook is being called in the right place
+    // and not someplace random in the application that makes debugging harder.
     const context = useContext(AppContext)
     if (!context) throw new Error("useApp must be used within a AppContext")
     return context
