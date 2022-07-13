@@ -13,7 +13,7 @@ import styles from "./CreateTaskModal.module.scss"
 
 type Props = {
     open: boolean
-    handleClose: () => any
+    handleClose(): void
 }
 
 const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
