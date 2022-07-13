@@ -26,50 +26,71 @@ const TasksList = () => {
             {showTasksList ? (
                 <Grid container alignItems="center" justifyContent="center">
                     <Grid xs={8}>
-                        {tasksList.map(({ title, description }, index) => {
-                            return (
-                                <Paper
-                                    key={index}
-                                    variant="outlined"
-                                    elevation={1}
-                                    className={styles.item}
-                                >
-                                    <Grid
-                                        display="flex"
-                                        alignItems="center"
-                                        justifyContent="space-between"
-                                    >
-                                        <Grid>
-                                            <div className={styles.title}>
-                                                {title}
-                                            </div>
-                                            <div className={styles.description}>
-                                                {description}
-                                            </div>
-                                        </Grid>
-                                        <Grid>
-                                            <div className={styles.priority}>
-                                                HIGH
-                                            </div>
-                                            <div className={styles.actions}>
-                                                <Button
-                                                    variant="contained"
-                                                    color="success"
-                                                >
-                                                    Done Task
-                                                </Button>
-                                                <Button
-                                                    variant="contained"
-                                                    color="info"
-                                                >
-                                                    Edit Task
-                                                </Button>
-                                            </div>
-                                        </Grid>
-                                    </Grid>
-                                </Paper>
-                            )
-                        })}
+                        {tasksList
+                            .filter(task => task.status === "OPEN")
+                            .map(
+                                (
+                                    { title, description, priority, status },
+                                    index
+                                ) => {
+                                    return (
+                                        <Paper
+                                            key={index}
+                                            variant="outlined"
+                                            elevation={1}
+                                            className={styles.item}
+                                        >
+                                            <Grid
+                                                display="flex"
+                                                alignItems="center"
+                                                justifyContent="space-between"
+                                            >
+                                                <Grid>
+                                                    <div
+                                                        className={styles.title}
+                                                    >
+                                                        {title}
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            styles.description
+                                                        }
+                                                    >
+                                                        {description}
+                                                    </div>
+                                                </Grid>
+                                                <Grid>
+                                                    <div
+                                                        className={
+                                                            styles.priority
+                                                        }
+                                                    >
+                                                        {priority}
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            styles.actions
+                                                        }
+                                                    >
+                                                        <Button
+                                                            variant="contained"
+                                                            color="success"
+                                                        >
+                                                            Done Task
+                                                        </Button>
+                                                        <Button
+                                                            variant="contained"
+                                                            color="info"
+                                                        >
+                                                            Edit Task
+                                                        </Button>
+                                                    </div>
+                                                </Grid>
+                                            </Grid>
+                                        </Paper>
+                                    )
+                                }
+                            )}
                     </Grid>
                     <FloatingAddButton handleOpen={handleOpen} />
                 </Grid>
