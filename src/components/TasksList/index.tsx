@@ -1,6 +1,7 @@
 import { Button } from "@mui/material"
 import { useState } from "react"
 import CreateTaskModal from "../CreateTaskModal"
+import FloatingAddButton from "../FloatingAddButton"
 import styles from "./TasksList.module.scss"
 
 const TasksList = () => {
@@ -22,6 +23,7 @@ const TasksList = () => {
                 open={isCreateNewTaskModalOpen}
                 handleClose={handleClose}
             />
+            <FloatingAddButton handleOpen={handleOpen} />
         </div>
     )
 }
