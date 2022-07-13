@@ -42,6 +42,13 @@ const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
 
         return "LOW"
     }
+    const getPriorityNumberByName = (name: string): string => {
+        if (name === "LOW") return "1"
+        if (name === "MEDIUM") return "2"
+        if (name === "HIGH") return "3"
+
+        return "1"
+    }
 
     // Render
     return (
@@ -80,7 +87,7 @@ const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
                         row
                         aria-labelledby="Task priority"
                         className={styles.priority}
-                        value={taskPriority}
+                        value={getPriorityNumberByName(taskPriority)}
                         onChange={e =>
                             setTaskPriority(getPriorityByNumber(e.target.value))
                         }
