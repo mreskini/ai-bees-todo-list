@@ -1,11 +1,11 @@
-import { Button } from "@mui/material"
 import Header from "./components/Header"
+import TasksList from "./components/TasksList"
 
 const App = () => {
     return (
         <>
             <Header />
-            <Button variant="contained">Create Your First Task ;)</Button>
+            <TasksList />
         </>
     )
 }
