@@ -1,3 +1,7 @@
+# Overview
+
+This is a todo list application for AI-Bees. This document explains some of the development decisions.
+
 # Git Flow and Commit Messages
 
 Git Flow Workflow simplifies parallel development because it isolated the new development from the released project. The team can collaborate better and spends less time managing the project versions if they use simple and clear branching strategy, such as Git Flow Workflow
@@ -17,5 +21,4 @@ This project uses Prettier and ESLint to stop most of the debates over styles an
     "semi": false,
     "endOfLine": "auto"
 }
-
 ```
