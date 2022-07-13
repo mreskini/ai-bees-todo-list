@@ -1,12 +1,18 @@
 .header {
+    width: 80%;
     height: 14vh;
+    margin: auto;
 
     display: flex;
     align-items: center;
     justify-content: space-around;
+    & > div {
+        width: 100% !important;
+    }
 }
 
 .title {
     font-weight: 600;
     font-size: 20px;
+    text-align: center;
 }
