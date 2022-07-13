@@ -1,4 +1,4 @@
-import { createContext, FunctionComponent, useContext, useState } from "react"
+import { createContext, useContext, useState } from "react"
 
 type Props = {
     children: JSX.Element
@@ -12,12 +12,12 @@ export type Task = {
 
 interface AppContextInterface {
     tasksList: Task[]
-    setTasksList(TasksList: Task[]): void
+    setTasksList(list: Task[]): void
 }
 
 const initialContextValue = {
     tasksList: [],
-    setTasksList: ([]) => undefined,
+    setTasksList: (list: Task[]) => undefined,
 }
 
 const AppContext = createContext<AppContextInterface>(initialContextValue)
