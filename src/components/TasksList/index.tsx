@@ -57,7 +57,22 @@ const TasksList = () => {
                                                 <div
                                                     className={styles.priority}
                                                 >
-                                                    {priority}
+                                                    <div>{priority}</div>
+                                                    <div
+                                                        className={`${
+                                                            styles.bullet
+                                                        } ${
+                                                            styles[
+                                                                priority ===
+                                                                "HIGH"
+                                                                    ? "bullet-high"
+                                                                    : priority ===
+                                                                      "MEDIUM"
+                                                                    ? "bullet-mid"
+                                                                    : "bullet-low"
+                                                            ]
+                                                        }`}
+                                                    ></div>
                                                 </div>
                                                 <div className={styles.actions}>
                                                     <Button

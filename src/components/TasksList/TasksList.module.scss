@@ -29,9 +29,29 @@
     font-weight: bold;
     text-align: end;
     margin-bottom: 10px;
+
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .actions {
     display: flex;
     gap: 15px;
+}
+
+.bullet {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    &-high {
+        background-color: red;
+    }
+    &-mid {
+        background-color: orange;
+    }
+    &-low {
+        background-color: green;
+    }
 }
