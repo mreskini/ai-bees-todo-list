@@ -26,9 +26,7 @@ const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
                 aria-describedby="This modal is used to create new tasks"
             >
                 <Box className={styles.modal}>
-                    <Typography className={styles.subject}>
-                        Create New Task
-                    </Typography>
+                    <div className={styles.subject}>Create New Task</div>
                     <TextField
                         label="Task title"
                         className={styles.title}
