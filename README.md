@@ -65,7 +65,7 @@ Here are the recommended tools:
 -   React Testing Library is a set of helpers that let you test React components without relying on their implementation details.
     Although it doesn't provide a way to "shallowly" render a component without its children, a tet runner like Jest lets you do this by mocking.
 
-This projects uses Jest as its main testing tool.
+This projects uses Jest and React Testing Library as its main testing tools.
 
 # Why to use Jest
 
