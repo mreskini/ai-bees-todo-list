@@ -1,5 +1,4 @@
 import { Button, Grid, Paper } from "@mui/material"
-import { useState } from "react"
 import { useApp } from "../../contexts/AppContext"
 import { Task, useTasks } from "../../contexts/TasksContext"
 import CreateTaskModal from "../CreateTaskModal"
@@ -14,17 +13,19 @@ const TasksList = () => {
     const {
         isDetailsModalOpen,
         isCreateModalOpen,
+        isEditModalOpen,
         currentTask,
 
         handleCreateModalOpen,
         handleCreateModalClose,
-        handleDetailsModalClose,
         handleDetailsModalOpen,
+        handleDetailsModalClose,
+        handleEditModalOpen,
+        handleEditModalClose,
     } = useApp()
 
     const openTasksList = tasksList.filter(task => task.status === "OPEN")
     const showTasksList = openTasksList.length > 0
-    const [isEditModalOpen, setIsEditModalOpen] = useState(false)
 
     // Methods
     const onEditTaskClick = (event: any, task: Task): void => {
@@ -36,13 +37,6 @@ const TasksList = () => {
         doneTaskByToken(token)
         event.stopPropagation()
     }
-
-    const handleEditModalOpen = (task: Task) => {
-        // setCurrentTask(task)
-        setIsEditModalOpen(true)
-    }
-
-    const handleEditModalClose = () => setIsEditModalOpen(false)
 
     const editTaskButtonClickInDetailsModal = (task: Task) => {
         handleDetailsModalClose()
