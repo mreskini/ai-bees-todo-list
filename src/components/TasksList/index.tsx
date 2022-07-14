@@ -11,26 +11,22 @@ import styles from "./TasksList.module.scss"
 const TasksList = () => {
     // States and Hooks
     const { tasksList, doneTaskByToken } = useTasks()
-    const { handleCreateModalOpen, handleCreateModalClose, isCreateModalOpen } =
-        useApp()
+    const {
+        isDetailsModalOpen,
+        isCreateModalOpen,
+        currentTask,
+
+        handleCreateModalOpen,
+        handleCreateModalClose,
+        handleDetailsModalClose,
+        handleDetailsModalOpen,
+    } = useApp()
 
     const openTasksList = tasksList.filter(task => task.status === "OPEN")
     const showTasksList = openTasksList.length > 0
-    const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
 
-    const [currentTask, setCurrentTask] = useState<Task | undefined>(
-        openTasksList[0]
-    )
-
     // Methods
-    const handleDetailsModalOpen = (task: Task) => {
-        setCurrentTask(task)
-        setIsDetailsModalOpen(true)
-    }
-
-    const handleDetailsModalClose = () => setIsDetailsModalOpen(false)
-
     const onEditTaskClick = (event: any, task: Task): void => {
         event.stopPropagation()
         handleEditModalOpen(task)
@@ -42,7 +38,7 @@ const TasksList = () => {
     }
 
     const handleEditModalOpen = (task: Task) => {
-        setCurrentTask(task)
+        // setCurrentTask(task)
         setIsEditModalOpen(true)
     }
 

@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react"
+import { Task } from "./TasksContext"
 
 type Props = {
     children: JSX.Element
@@ -6,16 +7,32 @@ type Props = {
 
 interface AppContextInterface {
     isCreateModalOpen: boolean
+    isDetailsModalOpen: boolean
+    currentTask: Task | undefined | null
+
     setIsCreateModalOpen(value: boolean): void
+    setIsDetailsModalOpen(value: boolean): void
+    setCurrentTask(task: Task): void
+
     handleCreateModalOpen(): void
     handleCreateModalClose(): void
+    handleDetailsModalOpen(task: Task): void
+    handleDetailsModalClose(): void
 }
 
 const initialContextValue = {
     isCreateModalOpen: false,
+    isDetailsModalOpen: false,
+    currentTask: null,
+
     setIsCreateModalOpen: () => undefined,
+    setIsDetailsModalOpen: () => undefined,
+    setCurrentTask: () => undefined,
+
     handleCreateModalOpen: () => undefined,
     handleCreateModalClose: () => undefined,
+    handleDetailsModalOpen: () => undefined,
+    handleDetailsModalClose: () => undefined,
 }
 
 const AppContext = createContext<AppContextInterface>(initialContextValue)
@@ -33,20 +50,37 @@ export const useApp = () => {
 const AppProvider: React.FC<Props> = ({ children }) => {
     // States and Hooks
     const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false)
+    const [isDetailsModalOpen, setIsDetailsModalOpen] = useState<boolean>(false)
+    const [currentTask, setCurrentTask] = useState<Task | undefined | null>(
+        null
+    )
 
     // Methods
     const handleCreateModalOpen = () => setIsCreateModalOpen(true)
     const handleCreateModalClose = () => setIsCreateModalOpen(false)
+    const handleDetailsModalOpen = (task: Task) => {
+        setCurrentTask(task)
+        setIsDetailsModalOpen(true)
+    }
+
+    const handleDetailsModalClose = () => setIsDetailsModalOpen(false)
 
     // Binding
     const value = {
         // States
         isCreateModalOpen,
+        isDetailsModalOpen,
+        currentTask,
+
         setIsCreateModalOpen,
+        setIsDetailsModalOpen,
+        setCurrentTask,
 
         // Methods
         handleCreateModalOpen,
         handleCreateModalClose,
+        handleDetailsModalOpen,
+        handleDetailsModalClose,
     }
 
     // Render
