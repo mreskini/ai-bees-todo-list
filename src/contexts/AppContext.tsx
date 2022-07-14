@@ -1,4 +1,5 @@
-import { createContext, useContext, useEffect, useState } from "react"
+import { createContext, useContext, useState } from "react"
+import { v4 as uuid } from "uuid"
 
 type Props = {
     children: JSX.Element
@@ -8,6 +9,7 @@ export type Status = "OPEN" | "DONE"
 export type Priority = "HIGH" | "MEDIUM" | "LOW"
 
 export type Task = {
+    token: string
     title: string
     description: string
     targets: string
@@ -25,12 +27,24 @@ interface AppContextInterface {
         priority: Priority,
         status: Status
     ): void
+    getTaskByToken(token: string): Task
 }
 
 const initialContextValue = {
     tasksList: [],
     setTasksList: (list: Task[]) => undefined,
     addNewTask: () => undefined,
+    getTaskByToken: () => {
+        const task: Task = {
+            token: "TOKEN",
+            title: "TITLE",
+            description: "DESCRIPTION",
+            targets: "TARGETS",
+            priority: "LOW",
+            status: "DONE",
+        }
+        return task
+    },
 }
 
 const AppContext = createContext<AppContextInterface>(initialContextValue)
@@ -59,6 +73,7 @@ const AppProvider: React.FC<Props> = ({ children }) => {
     ): void => {
         setTasksList([
             {
+                token: uuid(),
                 title,
                 description,
                 targets,
@@ -68,10 +83,10 @@ const AppProvider: React.FC<Props> = ({ children }) => {
             ...tasksList,
         ])
     }
-
-    useEffect(() => {
-        console.log("Tasks List", tasksList)
-    }, [tasksList])
+    const getTaskByToken = (token: string): Task => {
+        const task = tasksList.filter(item => item.token === token)[0]
+        return task
+    }
 
     // Binding
     const value = {
@@ -81,6 +96,7 @@ const AppProvider: React.FC<Props> = ({ children }) => {
 
         // Methods
         addNewTask,
+        getTaskByToken,
     }
 
     // Render
