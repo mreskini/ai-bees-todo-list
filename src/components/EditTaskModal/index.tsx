@@ -44,6 +44,12 @@ const EditTaskModal = () => {
             >
                 <Box className={modalStyles.modal}>
                     <div className={modalStyles.subject}>Edit Task</div>
+                    {/*
+                        Using Props at this section is better, because by using Context API,
+                        I need to create two context apis + two create and edit forms (with the same UI (more boilerplate code))
+                        (One for Create Modal and One for the Edit Modal, and because of using ts, there will be lots of unwanted boilerplate codes)
+                        So, I decided to use Props (though this might cause to prop plowing, but it's the better way to use here)
+                    */}
                     <TaskForm
                         title={title}
                         setTitle={setTitle}
