@@ -60,6 +60,7 @@ const EditTaskModal = () => {
                         setPriority={setPriority}
                         handleAction={editTaskButtonClick}
                         handleClose={handleClose}
+                        actionLabel="Edit Task"
                     />
                 </Box>
             </Modal>

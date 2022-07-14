@@ -51,6 +51,7 @@ const CreateTaskModal = () => {
                         setPriority={setPriority}
                         handleAction={addToTasksButtonClicked}
                         handleClose={handleClose}
+                        actionLabel="Create New Task"
                     />
                 </Box>
             </Modal>

@@ -21,6 +21,7 @@ type Props = {
     setPriority(value: Priority): void
     handleAction(): void
     handleClose(): void
+    actionLabel: string
 }
 
 const TaskForm: FC<Props> = ({
@@ -34,6 +35,7 @@ const TaskForm: FC<Props> = ({
     setPriority,
     handleAction,
     handleClose,
+    actionLabel,
 }) => {
     // Methods
     const getPriorityByNumber = (number: string) => {
@@ -97,7 +99,7 @@ const TaskForm: FC<Props> = ({
                     cancel
                 </Button>
                 <Button variant="contained" onClick={handleAction}>
-                    Edit Task
+                    {actionLabel}
                 </Button>
             </Box>
         </>

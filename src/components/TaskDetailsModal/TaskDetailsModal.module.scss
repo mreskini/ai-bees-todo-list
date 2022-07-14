@@ -10,18 +10,3 @@
     justify-content: space-between;
     margin-top: 30px;
 }
-
-.bullet {
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    &-high {
-        background-color: red;
-    }
-    &-mid {
-        background-color: orange;
-    }
-    &-low {
-        background-color: green;
-    }
-}
