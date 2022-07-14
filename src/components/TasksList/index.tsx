@@ -84,7 +84,12 @@ const TasksList = () => {
                                                                 styles.description
                                                             }
                                                         >
-                                                            {description}
+                                                            {description.slice(
+                                                                0,
+                                                                30
+                                                            )}
+                                                            {description.length >
+                                                                30 && "..."}
                                                         </div>
                                                     </Grid>
                                                     <Grid>
