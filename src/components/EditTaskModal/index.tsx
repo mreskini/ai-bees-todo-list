@@ -1,7 +1,6 @@
 import { Box, Modal } from "@mui/material"
 import { useEffect, useState } from "react"
 import { Priority, useTasks } from "../../contexts/TasksContext"
-import styles from "./EditTaskModal.module.scss"
 import modalStyles from "../../styles/modules/Modal.module.scss"
 import { useApp } from "../../contexts/AppContext"
 import TaskForm from "../TaskForm"
@@ -35,7 +34,7 @@ const EditTaskModal = () => {
 
     // Render
     return (
-        <div className={styles.tasks}>
+        <div>
             <Modal
                 open={open}
                 onClose={handleClose}

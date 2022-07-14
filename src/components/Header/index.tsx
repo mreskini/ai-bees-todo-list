@@ -7,8 +7,7 @@ import styles from "./Header.module.scss"
 const Header = () => {
     // States and Hooks
     const { tasksList } = useTasks()
-    const { isDoneTasksModalOpen, handleDoneTasksClose, handleDoneTasksOpen } =
-        useApp()
+    const { handleDoneTasksOpen } = useApp()
     const showDoneTasksButton: boolean = tasksList.length > 0
 
     // Render
