@@ -8,7 +8,7 @@ import styles from "./TasksList.module.scss"
 
 const TasksList = () => {
     // States and Hooks
-    const { tasksList, getTaskByToken } = useApp()
+    const { tasksList, getTaskByToken, doneTaskByToken } = useApp()
     const showTasksList = tasksList.length > 0
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
     const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false)
@@ -125,6 +125,11 @@ const TasksList = () => {
                                                             <Button
                                                                 variant="contained"
                                                                 color="success"
+                                                                onClick={() =>
+                                                                    doneTaskByToken(
+                                                                        token
+                                                                    )
+                                                                }
                                                             >
                                                                 Done Task
                                                             </Button>
