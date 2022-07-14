@@ -1,13 +1,15 @@
 import { FC } from "react"
 import { Box, Modal } from "@mui/material"
 import styles from "./TaskDetailsModal.module.scss"
+import { Task } from "../../contexts/AppContext"
 
 type Props = {
     open: boolean
     handleClose(): void
+    task: Task
 }
 
-const TaskDetailsModal: FC<Props> = ({ open, handleClose }) => {
+const TaskDetailsModal: FC<Props> = ({ open, handleClose, task }) => {
     // States and Hooks
 
     // Render
@@ -21,6 +23,7 @@ const TaskDetailsModal: FC<Props> = ({ open, handleClose }) => {
             >
                 <Box className={styles.modal}>
                     <div className={styles.subject}>Task Details</div>
+                    <div>{task.title}</div>
                 </Box>
             </Modal>
         </div>
