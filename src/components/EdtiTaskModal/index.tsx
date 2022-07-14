@@ -7,7 +7,7 @@ import {
     RadioGroup,
     TextField,
 } from "@mui/material"
-import { FC, useState } from "react"
+import { FC, useEffect, useState } from "react"
 import { Priority, Task, useApp } from "../../contexts/AppContext"
 import styles from "./EditTaskModal.module.scss"
 
@@ -20,21 +20,12 @@ type Props = {
 const EditTaskModal: FC<Props> = ({ open, handleClose, task }) => {
     // States and Hooks
     const { editTask } = useApp()
-    const [titleValue, setTitleValue] = useState<string>(task.title)
-    const [descriptionValue, setDescriptionValue] = useState<string>(
-        task.description
-    )
-    const [targetsValue, setTargetsValue] = useState<string>(task.targets)
-    const [taskPriority, setTaskPriority] = useState<Priority>(task.priority)
+    const [titleValue, setTitleValue] = useState<string>("")
+    const [descriptionValue, setDescriptionValue] = useState<string>("")
+    const [targetsValue, setTargetsValue] = useState<string>("")
+    const [taskPriority, setTaskPriority] = useState<Priority>("LOW")
 
     // Methods
-    const resetForm = () => {
-        setTitleValue("")
-        setDescriptionValue("")
-        setTargetsValue("")
-        setTaskPriority("LOW")
-    }
-
     const addToTasksButtonClicked = () => {
         editTask(
             task.token,
@@ -43,9 +34,15 @@ const EditTaskModal: FC<Props> = ({ open, handleClose, task }) => {
             targetsValue,
             taskPriority
         )
-        resetForm()
         handleClose()
     }
+
+    useEffect(() => {
+        setTitleValue(task.title)
+        setDescriptionValue(task.description)
+        setTargetsValue(task.targets)
+        setTaskPriority(task.priority)
+    }, [task])
 
     const getPriorityByNumber = (number: string) => {
         if (number === "1") return "LOW"

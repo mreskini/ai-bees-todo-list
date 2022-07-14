@@ -44,6 +44,7 @@ const TasksList = () => {
     }
 
     const handleEditModalOpen = (task: Task) => {
+        console.log("task", task)
         setCurrentTask(task)
         setIsEditModalOpen(true)
     }
