@@ -14,10 +14,7 @@ const Header = () => {
     // Render
     return (
         <>
-            <DoneTasksModal
-                open={isDoneTasksModalOpen}
-                handleClose={handleDoneTasksClose}
-            />
+            <DoneTasksModal />
             <div className={styles.header}>
                 {showDoneTasksButton && (
                     <div>

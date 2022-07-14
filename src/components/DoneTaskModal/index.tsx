@@ -1,17 +1,14 @@
-import { FC } from "react"
 import { Box, Grid, Modal, Paper } from "@mui/material"
 import styles from "./DoneTasksModal.module.scss"
 import { useTasks } from "../../contexts/TasksContext"
 import modalStyles from "../../styles/modules/Modal.module.scss"
+import { useApp } from "../../contexts/AppContext"
 
-type Props = {
-    open: boolean
-    handleClose(): void
-}
-
-const DoneTasksModal: FC<Props> = ({ open, handleClose }) => {
+const DoneTasksModal = () => {
     // States and Hooks
     const { tasksList } = useTasks()
+    const { isDoneTasksModalOpen: open, handleDoneTasksClose: handleClose } =
+        useApp()
     const doneTasksList = tasksList.filter(task => task.status === "DONE")
 
     // Methods
