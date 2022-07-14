@@ -95,7 +95,12 @@ const TaskForm: FC<Props> = ({
                 <FormControlLabel value="3" control={<Radio />} label="High" />
             </RadioGroup>
             <Box className={styles.actions}>
-                <Button variant="outlined" color="error" onClick={handleClose}>
+                <Button
+                    variant="outlined"
+                    color="error"
+                    onClick={handleClose}
+                    data-testid="modal-cancel"
+                >
                     cancel
                 </Button>
                 <Button variant="contained" onClick={handleAction}>

@@ -39,7 +39,12 @@ const CreateTaskModal = () => {
                 aria-describedby="This modal is used to create new tasks"
             >
                 <Box className={modalStyles.modal}>
-                    <div className={modalStyles.subject}>Create New Task</div>
+                    <div
+                        data-testid="modal-title"
+                        className={modalStyles.subject}
+                    >
+                        Create New Task
+                    </div>
                     <TaskForm
                         title={title}
                         setTitle={setTitle}

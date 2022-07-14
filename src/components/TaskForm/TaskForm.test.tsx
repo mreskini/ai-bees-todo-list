@@ -1,5 +1,3 @@
-// You can find the Header component tests in here.
-// We test different scenarios to make sure the component is fully working.
 import "@testing-library/jest-dom"
 import { render, screen } from "@testing-library/react"
 import { useState } from "react"
@@ -71,6 +69,5 @@ describe("TaskForm component tests", () => {
         const element = screen.queryByLabelText("High")
         expect(element).toBeInTheDocument()
     })
-
     // And so on.... we can check all the things on the screen and make sure that they are there.
 })
