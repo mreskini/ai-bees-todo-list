@@ -1,5 +1,6 @@
 import { Button, Grid, Paper } from "@mui/material"
 import { useState } from "react"
+import { useApp } from "../../contexts/AppContext"
 import { Task, useTasks } from "../../contexts/TasksContext"
 import CreateTaskModal from "../CreateTaskModal"
 import EditTaskModal from "../EdtiTaskModal"
@@ -10,9 +11,11 @@ import styles from "./TasksList.module.scss"
 const TasksList = () => {
     // States and Hooks
     const { tasksList, getTaskByToken, doneTaskByToken } = useTasks()
+    const { handleCreateModalOpen, handleCreateModalClose, isCreateModalOpen } =
+        useApp()
+
     const openTasksList = tasksList.filter(task => task.status === "OPEN")
     const showTasksList = openTasksList.length > 0
-    const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
     const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false)
     const [isEditModalOpen, setIsEditModalOpen] = useState(false)
 
@@ -21,10 +24,6 @@ const TasksList = () => {
     )
 
     // Methods
-    const handleCreateModalOpen = () => setIsCreateModalOpen(true)
-
-    const handleCreateModalClose = () => setIsCreateModalOpen(false)
-
     const handleDetailsModalOpen = (token: string) => {
         const task = getTaskByToken(token)
         setCurrentTask(task)
