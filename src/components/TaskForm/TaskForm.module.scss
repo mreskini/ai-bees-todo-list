@@ -1,0 +1,27 @@
+.title {
+    width: 100%;
+}
+
+.description {
+    width: 100%;
+    margin-top: 15px !important;
+}
+
+.targets {
+    width: 100%;
+    margin-top: 15px !important;
+}
+
+.priority {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100%;
+    margin: 15px 0px !important;
+}
+
+.actions {
+    display: flex;
+    gap: 10px;
+}
