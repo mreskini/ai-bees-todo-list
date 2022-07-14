@@ -1,62 +1,67 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import { v4 as uuid } from "uuid"
+import { createContext, useContext, useState } from "react"
+import { Task } from "./TasksContext"
 
 type Props = {
     children: JSX.Element
 }
 
-export type Status = "OPEN" | "DONE"
-export type Priority = "HIGH" | "MEDIUM" | "LOW"
-
-export type Task = {
-    token: string
-    title: string
-    description: string
-    targets: string
-    priority: Priority
-    status: Status
+const dummyTask: Task = {
+    token: "kdf839gfcnkdl348",
+    title: "Dummy Title",
+    description: "Dummy Description",
+    targets: "Dummy Targets",
+    priority: "HIGH",
+    status: "DONE",
 }
 
 interface AppContextInterface {
-    tasksList: Task[]
-    setTasksList(list: Task[]): void
-    addNewTask(
-        title: string,
-        description: string,
-        targets: string,
-        priority: Priority,
-        status: Status
-    ): void
-    getTaskByToken(token: string): Task
-    doneTaskByToken(token: string): void
-    deleteTaskByToken(token: string): void
-    editTask(
-        token: string,
-        title: string,
-        description: string,
-        targets: string,
-        priority: Priority
-    ): void
+    isCreateModalOpen: boolean
+    isDetailsModalOpen: boolean
+    isEditModalOpen: boolean
+    isDoneTasksModalOpen: boolean
+    currentTask: Task
+
+    setIsCreateModalOpen(value: boolean): void
+    setIsDetailsModalOpen(value: boolean): void
+    setIsEditModalOpen(value: boolean): void
+    setCurrentTask(task: Task): void
+
+    handleCreateModalOpen(): void
+    handleCreateModalClose(): void
+
+    handleDetailsModalOpen(task: Task): void
+    handleDetailsModalClose(): void
+
+    handleEditModalOpen(task: Task): void
+    handleEditModalClose(): void
+
+    handleDoneTasksClose(): void
+    handleDoneTasksOpen(): void
 }
 
 const initialContextValue = {
-    tasksList: [],
-    setTasksList: () => undefined,
-    addNewTask: () => undefined,
-    getTaskByToken: () => {
-        const task: Task = {
-            token: "TOKEN",
-            title: "TITLE",
-            description: "DESCRIPTION",
-            targets: "TARGETS",
-            priority: "LOW",
-            status: "DONE",
-        }
-        return task
-    },
-    doneTaskByToken: () => undefined,
-    deleteTaskByToken: () => undefined,
-    editTask: () => undefined,
+    isCreateModalOpen: false,
+    isDetailsModalOpen: false,
+    isEditModalOpen: false,
+    isDoneTasksModalOpen: false,
+    currentTask: dummyTask,
+
+    setIsCreateModalOpen: () => undefined,
+    setIsDetailsModalOpen: () => undefined,
+    setIsEditModalOpen: () => undefined,
+    setCurrentTask: () => undefined,
+
+    handleCreateModalOpen: () => undefined,
+    handleCreateModalClose: () => undefined,
+
+    handleDetailsModalOpen: () => undefined,
+    handleDetailsModalClose: () => undefined,
+
+    handleEditModalOpen: () => undefined,
+    handleEditModalClose: () => undefined,
+
+    handleDoneTasksOpen: () => undefined,
+    handleDoneTasksClose: () => undefined,
 }
 
 const AppContext = createContext<AppContextInterface>(initialContextValue)
@@ -73,82 +78,54 @@ export const useApp = () => {
 
 const AppProvider: React.FC<Props> = ({ children }) => {
     // States and Hooks
-    const [tasksList, setTasksList] = useState<Task[]>([])
+    const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false)
+    const [isDetailsModalOpen, setIsDetailsModalOpen] = useState<boolean>(false)
+    const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false)
+    const [isDoneTasksModalOpen, setIsDoneTaskModalOpen] =
+        useState<boolean>(false)
+    const [currentTask, setCurrentTask] = useState<Task>(dummyTask)
 
     // Methods
-    const addNewTask = (
-        title: string,
-        description: string,
-        targets: string,
-        priority: Priority,
-        status: Status
-    ): void => {
-        setTasksList([
-            {
-                token: uuid(),
-                title,
-                description,
-                targets,
-                priority,
-                status,
-            },
-            ...tasksList,
-        ])
+    const handleCreateModalOpen = () => setIsCreateModalOpen(true)
+    const handleCreateModalClose = () => setIsCreateModalOpen(false)
+    const handleDetailsModalOpen = (task: Task) => {
+        setCurrentTask(task)
+        setIsDetailsModalOpen(true)
     }
-    const getTaskByToken = (token: string): Task => {
-        const task = tasksList.filter(item => item.token === token)[0]
-        return task
-    }
-    const doneTaskByToken = (token: string): void => {
-        const updatedTasksList = tasksList.map(item => {
-            if (token === item.token) {
-                item.status = "DONE"
-                return item
-            }
-            return item
-        })
-        setTasksList(updatedTasksList)
+    const handleDetailsModalClose = () => setIsDetailsModalOpen(false)
+    const handleEditModalOpen = (task: Task) => {
+        setCurrentTask(task)
+        setIsEditModalOpen(true)
     }
 
-    const deleteTaskByToken = (token: string): void => {
-        const updatedTasksList = tasksList.filter(task => task.token !== token)
-        setTasksList(updatedTasksList)
-    }
-    const editTask = (
-        token: string,
-        title: string,
-        description: string,
-        targets: string,
-        priority: Priority
-    ): void => {
-        const updatedTasksList = tasksList.map(task => {
-            if (task.token === token) {
-                task.title = title
-                task.description = description
-                task.targets = targets
-                task.priority = priority
-            }
-            return task
-        })
-        setTasksList(updatedTasksList)
-    }
-
-    useEffect(() => {
-        console.log(tasksList)
-    }, [tasksList])
+    const handleEditModalClose = () => setIsEditModalOpen(false)
+    const handleDoneTasksOpen = () => setIsDoneTaskModalOpen(true)
+    const handleDoneTasksClose = () => setIsDoneTaskModalOpen(false)
 
     // Binding
     const value = {
         // States
-        tasksList,
-        setTasksList,
+        isCreateModalOpen,
+        isDetailsModalOpen,
+        isEditModalOpen,
+        isDoneTasksModalOpen,
+        currentTask,
+
+        setIsCreateModalOpen,
+        setIsDetailsModalOpen,
+        setIsEditModalOpen,
+        setIsDoneTaskModalOpen,
+        setCurrentTask,
 
         // Methods
-        addNewTask,
-        getTaskByToken,
-        doneTaskByToken,
-        deleteTaskByToken,
-        editTask,
+        handleCreateModalOpen,
+        handleCreateModalClose,
+        handleDetailsModalOpen,
+        handleDetailsModalClose,
+        handleEditModalOpen,
+        handleEditModalClose,
+        handleDoneTasksOpen,
+        handleDoneTasksClose,
     }
 
     // Render

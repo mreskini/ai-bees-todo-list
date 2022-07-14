@@ -1,24 +1,19 @@
-import { FC } from "react"
 import { Box, Button, Modal } from "@mui/material"
 import styles from "./TaskDetailsModal.module.scss"
-import { Task, useApp } from "../../contexts/AppContext"
+import modalStyles from "../../styles/modules/Modal.module.scss"
+import { Task, useTasks } from "../../contexts/TasksContext"
+import { useApp } from "../../contexts/AppContext"
 
-type Props = {
-    open: boolean
-    handleClose(): void
-    task: Task
-    editClick(task: Task): void
-}
-
-const TaskDetailsModal: FC<Props> = ({
-    open,
-    handleClose,
-    task,
-    editClick,
-}) => {
+const TaskDetailsModal = () => {
     // States and Hooks
-    const { doneTaskByToken, deleteTaskByToken } = useApp()
-    const { token, title, description, targets, priority, status } = task
+    const { doneTaskByToken, deleteTaskByToken } = useTasks()
+    const {
+        currentTask: task,
+        isDetailsModalOpen: open,
+        handleDetailsModalClose: handleClose,
+        handleEditModalOpen,
+    } = useApp()
+    const { token, title, description, priority } = task
 
     // Methods
     const onDoneTaskButtonClick = () => {
@@ -31,6 +26,10 @@ const TaskDetailsModal: FC<Props> = ({
         handleClose()
     }
 
+    const editClick = (task: Task): void => {
+        handleEditModalOpen(task)
+    }
+
     // Render
     return (
         <div className={styles.tasks}>
@@ -40,8 +39,8 @@ const TaskDetailsModal: FC<Props> = ({
                 aria-labelledby="Task details modal"
                 aria-describedby="This modal is used to show the task details"
             >
-                <Box className={styles.modal}>
-                    <div className={styles.subject}>Task Details</div>
+                <Box className={modalStyles.modal}>
+                    <div className={modalStyles.subject}>Task Details</div>
                     <div className={styles.title}>
                         <div>
                             Title: {title} ({priority})

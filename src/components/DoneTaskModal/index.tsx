@@ -1,31 +1,30 @@
-import { FC } from "react"
 import { Box, Grid, Modal, Paper } from "@mui/material"
 import styles from "./DoneTasksModal.module.scss"
+import modalStyles from "../../styles/modules/Modal.module.scss"
+import taskStyles from "../../styles/modules/Task.module.scss"
+import { useTasks } from "../../contexts/TasksContext"
 import { useApp } from "../../contexts/AppContext"
 
-type Props = {
-    open: boolean
-    handleClose(): void
-}
-
-const DoneTasksModal: FC<Props> = ({ open, handleClose }) => {
+const DoneTasksModal = () => {
     // States and Hooks
-    const { tasksList } = useApp()
+    const { tasksList } = useTasks()
+    const { isDoneTasksModalOpen: open, handleDoneTasksClose: handleClose } =
+        useApp()
     const doneTasksList = tasksList.filter(task => task.status === "DONE")
 
     // Methods
 
     // Render
     return (
-        <div className={styles.tasks}>
+        <div>
             <Modal
                 open={open}
                 onClose={handleClose}
                 aria-labelledby="Done tasks modal"
                 aria-describedby="This modal is used to show the done tasks"
             >
-                <Box className={styles.modal}>
-                    <div className={styles.subject}>Done Tasks</div>
+                <Box className={modalStyles.modal}>
+                    <div className={modalStyles.subject}>Done Tasks</div>
                     <div>
                         {doneTasksList.length === 0 && (
                             <div className={styles.label}>
@@ -47,12 +46,14 @@ const DoneTasksModal: FC<Props> = ({ open, handleClose }) => {
                                             justifyContent="space-between"
                                         >
                                             <Grid>
-                                                <div className={styles.title}>
+                                                <div
+                                                    className={taskStyles.title}
+                                                >
                                                     {title}
                                                 </div>
                                                 <div
                                                     className={
-                                                        styles.description
+                                                        taskStyles.description
                                                     }
                                                 >
                                                     {description.slice(0, 30)}
@@ -62,14 +63,16 @@ const DoneTasksModal: FC<Props> = ({ open, handleClose }) => {
                                             </Grid>
                                             <Grid>
                                                 <div
-                                                    className={styles.priority}
+                                                    className={
+                                                        taskStyles.priority
+                                                    }
                                                 >
                                                     <div>{priority}</div>
                                                     <div
                                                         className={`${
-                                                            styles.bullet
+                                                            taskStyles.bullet
                                                         } ${
-                                                            styles[
+                                                            taskStyles[
                                                                 priority ===
                                                                 "HIGH"
                                                                     ? "bullet-high"

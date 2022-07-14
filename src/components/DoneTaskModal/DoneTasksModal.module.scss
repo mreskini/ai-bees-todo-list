@@ -1,74 +1,7 @@
-.modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-
-    width: 700px;
-    height: auto;
-    padding: 25px;
-    border-radius: 4px;
-
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border: 1px solid black;
-}
-
-.subject {
-    font-weight: bold;
-    font-size: 24px;
-    margin-bottom: 25px;
-    border-bottom: 1px solid black;
-    padding-bottom: 10px;
-}
-
 .item {
     width: 96% !important;
     margin-bottom: 15px;
     padding: 2%;
-}
-
-.title {
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 10px;
-    text-align: left;
-}
-
-.description {
-    font-size: 16px;
-    font-weight: 500;
-    text-align: left;
-}
-
-.priority {
-    font-weight: bold;
-    text-align: end;
-    margin-bottom: 10px;
-
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.actions {
-    display: flex;
-    gap: 15px;
-}
-
-.bullet {
-    width: 30px;
-    height: 30px;
-    border-radius: 100%;
-    &-high {
-        background-color: red;
-    }
-    &-mid {
-        background-color: orange;
-    }
-    &-low {
-        background-color: green;
-    }
 }
 
 .label {

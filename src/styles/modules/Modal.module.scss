@@ -1,0 +1,24 @@
+// In this SCSS Modules, we will add all the stylings for the modals. we have different modals in this project, this way,
+// all of them will follow the same design and make them reusable and easy to maintain (and test)
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 700px;
+    height: auto;
+    padding: 25px;
+    border-radius: 4px;
+
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border: 1px solid black;
+}
+
+.subject {
+    font-weight: bold;
+    font-size: 24px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
