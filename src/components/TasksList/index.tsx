@@ -13,12 +13,9 @@ const TasksList = () => {
     const { tasksList } = useTasks()
     const {
         isCreateModalOpen,
-        isEditModalOpen,
-        currentTask,
 
         handleCreateModalOpen,
         handleCreateModalClose,
-        handleEditModalClose,
     } = useApp()
     const openTasksList = tasksList.filter(task => task.status === "OPEN")
     const showTasksList = openTasksList.length > 0
@@ -31,13 +28,7 @@ const TasksList = () => {
                 handleClose={handleCreateModalClose}
             />
             <TaskDetailsModal />
-            {currentTask && (
-                <EditTaskModal
-                    open={isEditModalOpen}
-                    handleClose={handleEditModalClose}
-                    task={currentTask}
-                />
-            )}
+            <EditTaskModal />
             {showTasksList ? (
                 <Grid container alignItems="center" justifyContent="center">
                     <Grid xs={8}>

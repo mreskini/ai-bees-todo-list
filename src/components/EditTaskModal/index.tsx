@@ -7,20 +7,20 @@ import {
     RadioGroup,
     TextField,
 } from "@mui/material"
-import { FC, useEffect, useState } from "react"
-import { Priority, Task, useTasks } from "../../contexts/TasksContext"
+import { useEffect, useState } from "react"
+import { Priority, useTasks } from "../../contexts/TasksContext"
 import styles from "./EditTaskModal.module.scss"
 import modalStyles from "../../styles/modules/Modal.module.scss"
+import { useApp } from "../../contexts/AppContext"
 
-type Props = {
-    open: boolean
-    handleClose(): void
-    task: Task
-}
-
-const EditTaskModal: FC<Props> = ({ open, handleClose, task }) => {
+const EditTaskModal = () => {
     // States and Hooks
     const { editTask } = useTasks()
+    const {
+        isEditModalOpen: open,
+        handleEditModalClose: handleClose,
+        currentTask: task,
+    } = useApp()
     const [titleValue, setTitleValue] = useState<string>("")
     const [descriptionValue, setDescriptionValue] = useState<string>("")
     const [targetsValue, setTargetsValue] = useState<string>("")
