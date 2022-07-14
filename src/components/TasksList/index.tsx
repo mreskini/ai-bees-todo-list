@@ -44,12 +44,16 @@ const TasksList = () => {
     }
 
     const handleEditModalOpen = (task: Task) => {
-        console.log("task", task)
         setCurrentTask(task)
         setIsEditModalOpen(true)
     }
 
     const handleEditModalClose = () => setIsEditModalOpen(false)
+
+    const editTaskButtonClickInDetailsModal = (task: Task) => {
+        handleDetailsModalClose()
+        handleEditModalOpen(task)
+    }
 
     //   Render
     return (
@@ -63,6 +67,7 @@ const TasksList = () => {
                     open={isDetailsModalOpen}
                     handleClose={handleDetailsModalClose}
                     task={currentTask}
+                    editClick={editTaskButtonClickInDetailsModal}
                 />
             )}
             {currentTask && (
