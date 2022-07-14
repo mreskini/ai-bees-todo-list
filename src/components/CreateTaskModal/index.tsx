@@ -25,6 +25,13 @@ const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
     const [taskPriority, setTaskPriority] = useState<Priority>("LOW")
 
     // Methods
+    const resetForm = () => {
+        setTitleValue("")
+        setDescriptionValue("")
+        setTargetsValue("")
+        setTaskPriority("LOW")
+    }
+
     const addToTasksButtonClicked = () => {
         addNewTask(
             titleValue,
@@ -33,8 +40,10 @@ const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
             taskPriority,
             "OPEN"
         )
+        resetForm()
         handleClose()
     }
+
     const getPriorityByNumber = (number: string) => {
         if (number === "1") return "LOW"
         if (number === "2") return "MEDIUM"
@@ -42,6 +51,7 @@ const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
 
         return "LOW"
     }
+
     const getPriorityNumberByName = (name: string): string => {
         if (name === "LOW") return "1"
         if (name === "MEDIUM") return "2"

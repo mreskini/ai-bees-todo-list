@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import { v4 as uuid } from "uuid"
 
 type Props = {
@@ -28,11 +28,13 @@ interface AppContextInterface {
         status: Status
     ): void
     getTaskByToken(token: string): Task
+    doneTaskByToken(token: string): void
+    deleteTaskByToken(token: string): void
 }
 
 const initialContextValue = {
     tasksList: [],
-    setTasksList: (list: Task[]) => undefined,
+    setTasksList: () => undefined,
     addNewTask: () => undefined,
     getTaskByToken: () => {
         const task: Task = {
@@ -45,6 +47,8 @@ const initialContextValue = {
         }
         return task
     },
+    doneTaskByToken: () => undefined,
+    deleteTaskByToken: () => undefined,
 }
 
 const AppContext = createContext<AppContextInterface>(initialContextValue)
@@ -87,6 +91,25 @@ const AppProvider: React.FC<Props> = ({ children }) => {
         const task = tasksList.filter(item => item.token === token)[0]
         return task
     }
+    const doneTaskByToken = (token: string): void => {
+        const updatedTasksList = tasksList.map(item => {
+            if (token === item.token) {
+                item.status = "DONE"
+                return item
+            }
+            return item
+        })
+        setTasksList(updatedTasksList)
+    }
+
+    const deleteTaskByToken = (token: string): void => {
+        const updatedTasksList = tasksList.filter(task => task.token !== token)
+        setTasksList(updatedTasksList)
+    }
+
+    useEffect(() => {
+        console.log(tasksList)
+    }, [tasksList])
 
     // Binding
     const value = {
@@ -97,6 +120,8 @@ const AppProvider: React.FC<Props> = ({ children }) => {
         // Methods
         addNewTask,
         getTaskByToken,
+        doneTaskByToken,
+        deleteTaskByToken,
     }
 
     // Render
