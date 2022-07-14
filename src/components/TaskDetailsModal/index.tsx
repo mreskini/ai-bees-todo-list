@@ -11,12 +11,17 @@ type Props = {
 
 const TaskDetailsModal: FC<Props> = ({ open, handleClose, task }) => {
     // States and Hooks
-    const { doneTaskByToken } = useApp()
+    const { doneTaskByToken, deleteTaskByToken } = useApp()
     const { token, title, description, targets, priority, status } = task
 
     // Methods
     const onDoneTaskButtonClick = () => {
         doneTaskByToken(token)
+        handleClose()
+    }
+
+    const onDeleteTaskButtonClick = () => {
+        deleteTaskByToken(token)
         handleClose()
     }
 
@@ -51,7 +56,11 @@ const TaskDetailsModal: FC<Props> = ({ open, handleClose, task }) => {
                         >
                             Done Task
                         </Button>
-                        <Button variant="contained" color="error">
+                        <Button
+                            variant="contained"
+                            color="error"
+                            onClick={onDeleteTaskButtonClick}
+                        >
                             Delete Task
                         </Button>
                     </div>
