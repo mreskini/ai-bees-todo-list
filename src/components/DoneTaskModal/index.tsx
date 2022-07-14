@@ -28,7 +28,9 @@ const DoneTasksModal: FC<Props> = ({ open, handleClose }) => {
                     <div className={styles.subject}>Done Tasks</div>
                     <div>
                         {doneTasksList.length === 0 && (
-                            <div>No Done Tasks Found</div>
+                            <div className={styles.label}>
+                                No Done Tasks Found
+                            </div>
                         )}
                         {doneTasksList.map(
                             ({ token, title, description, priority }) => {
