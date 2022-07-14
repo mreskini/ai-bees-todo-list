@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom"
-import { render, screen } from "@testing-library/react"
+import { fireEvent, render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import { useEffect } from "react"
 import CreateTaskModal from "."
@@ -44,5 +44,21 @@ describe("CreateTaskModal component tests", () => {
         userEvent.click(element)
         const title = screen.queryByTestId("modal-title")
         expect(title).not.toBeInTheDocument()
+    })
+
+    // We cannot test the add new task process because that would be an integration test, we only want to add simple unit tests for this task.
+    // But, we can test the user events like changing the values and ...
+    it("Can change the task title input field", () => {
+        render(<MockCreateTaskModal />)
+        const titleInput: HTMLInputElement = screen.getByLabelText("Task title")
+        fireEvent.change(titleInput, { target: { value: "Hello Foobar" } })
+        expect(titleInput.value).toBe("Hello Foobar")
+    })
+    it("Can change the task description input field", () => {
+        render(<MockCreateTaskModal />)
+        const titleInput: HTMLInputElement =
+            screen.getByLabelText("Task description")
+        fireEvent.change(titleInput, { target: { value: "Hello there" } })
+        expect(titleInput.value).toBe("Hello there")
     })
 })
