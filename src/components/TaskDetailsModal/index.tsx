@@ -19,7 +19,7 @@ const TaskDetailsModal: FC<Props> = ({
 }) => {
     // States and Hooks
     const { doneTaskByToken, deleteTaskByToken } = useTasks()
-    const { token, title, description, targets, priority, status } = task
+    const { token, title, description, priority } = task
 
     // Methods
     const onDoneTaskButtonClick = () => {

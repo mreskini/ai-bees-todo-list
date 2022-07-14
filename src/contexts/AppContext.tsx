@@ -9,6 +9,7 @@ interface AppContextInterface {
     isCreateModalOpen: boolean
     isDetailsModalOpen: boolean
     isEditModalOpen: boolean
+    isDoneTasksModalOpen: boolean
     currentTask: Task | undefined | null
 
     setIsCreateModalOpen(value: boolean): void
@@ -18,16 +19,22 @@ interface AppContextInterface {
 
     handleCreateModalOpen(): void
     handleCreateModalClose(): void
+
     handleDetailsModalOpen(task: Task): void
     handleDetailsModalClose(): void
+
     handleEditModalOpen(task: Task): void
     handleEditModalClose(): void
+
+    handleDoneTasksClose(): void
+    handleDoneTasksOpen(): void
 }
 
 const initialContextValue = {
     isCreateModalOpen: false,
     isDetailsModalOpen: false,
     isEditModalOpen: false,
+    isDoneTasksModalOpen: false,
     currentTask: null,
 
     setIsCreateModalOpen: () => undefined,
@@ -37,10 +44,15 @@ const initialContextValue = {
 
     handleCreateModalOpen: () => undefined,
     handleCreateModalClose: () => undefined,
+
     handleDetailsModalOpen: () => undefined,
     handleDetailsModalClose: () => undefined,
+
     handleEditModalOpen: () => undefined,
     handleEditModalClose: () => undefined,
+
+    handleDoneTasksOpen: () => undefined,
+    handleDoneTasksClose: () => undefined,
 }
 
 const AppContext = createContext<AppContextInterface>(initialContextValue)
@@ -60,6 +72,8 @@ const AppProvider: React.FC<Props> = ({ children }) => {
     const [isCreateModalOpen, setIsCreateModalOpen] = useState<boolean>(false)
     const [isDetailsModalOpen, setIsDetailsModalOpen] = useState<boolean>(false)
     const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false)
+    const [isDoneTasksModalOpen, setIsDoneTaskModalOpen] =
+        useState<boolean>(false)
     const [currentTask, setCurrentTask] = useState<Task | undefined | null>(
         null
     )
@@ -78,6 +92,8 @@ const AppProvider: React.FC<Props> = ({ children }) => {
     }
 
     const handleEditModalClose = () => setIsEditModalOpen(false)
+    const handleDoneTasksOpen = () => setIsDoneTaskModalOpen(true)
+    const handleDoneTasksClose = () => setIsDoneTaskModalOpen(false)
 
     // Binding
     const value = {
@@ -85,11 +101,13 @@ const AppProvider: React.FC<Props> = ({ children }) => {
         isCreateModalOpen,
         isDetailsModalOpen,
         isEditModalOpen,
+        isDoneTasksModalOpen,
         currentTask,
 
         setIsCreateModalOpen,
         setIsDetailsModalOpen,
         setIsEditModalOpen,
+        setIsDoneTaskModalOpen,
         setCurrentTask,
 
         // Methods
@@ -99,6 +117,8 @@ const AppProvider: React.FC<Props> = ({ children }) => {
         handleDetailsModalClose,
         handleEditModalOpen,
         handleEditModalClose,
+        handleDoneTasksOpen,
+        handleDoneTasksClose,
     }
 
     // Render

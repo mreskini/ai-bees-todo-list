@@ -1,5 +1,5 @@
 import { Button } from "@mui/material"
-import { useState } from "react"
+import { useApp } from "../../contexts/AppContext"
 import { useTasks } from "../../contexts/TasksContext"
 import DoneTasksModal from "../DoneTaskModal"
 import styles from "./Header.module.scss"
@@ -7,12 +7,9 @@ import styles from "./Header.module.scss"
 const Header = () => {
     // States and Hooks
     const { tasksList } = useTasks()
+    const { isDoneTasksModalOpen, handleDoneTasksClose, handleDoneTasksOpen } =
+        useApp()
     const showDoneTasksButton: boolean = tasksList.length > 0
-    const [isDoneTasksModalOpen, setIsDoneTaskModalOpen] = useState(false)
-
-    // Methods
-    const handleDoneTasksOpen = () => setIsDoneTaskModalOpen(true)
-    const handleDoneTasksClose = () => setIsDoneTaskModalOpen(false)
 
     // Render
     return (

@@ -2,7 +2,6 @@ import { Button, Grid, Paper } from "@mui/material"
 import { FC } from "react"
 import { useApp } from "../../contexts/AppContext"
 import { Task, useTasks } from "../../contexts/TasksContext"
-import styles from "./TaskItem.module.scss"
 import taskStyles from "../../styles/modules/Task.module.scss"
 
 type Props = {
