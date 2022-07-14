@@ -1,7 +1,8 @@
 import { Box, Grid, Modal, Paper } from "@mui/material"
 import styles from "./DoneTasksModal.module.scss"
-import { useTasks } from "../../contexts/TasksContext"
 import modalStyles from "../../styles/modules/Modal.module.scss"
+import taskStyles from "../../styles/modules/Task.module.scss"
+import { useTasks } from "../../contexts/TasksContext"
 import { useApp } from "../../contexts/AppContext"
 
 const DoneTasksModal = () => {
@@ -15,7 +16,7 @@ const DoneTasksModal = () => {
 
     // Render
     return (
-        <div className={styles.tasks}>
+        <div>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -45,12 +46,14 @@ const DoneTasksModal = () => {
                                             justifyContent="space-between"
                                         >
                                             <Grid>
-                                                <div className={styles.title}>
+                                                <div
+                                                    className={taskStyles.title}
+                                                >
                                                     {title}
                                                 </div>
                                                 <div
                                                     className={
-                                                        styles.description
+                                                        taskStyles.description
                                                     }
                                                 >
                                                     {description.slice(0, 30)}
@@ -60,14 +63,16 @@ const DoneTasksModal = () => {
                                             </Grid>
                                             <Grid>
                                                 <div
-                                                    className={styles.priority}
+                                                    className={
+                                                        taskStyles.priority
+                                                    }
                                                 >
                                                     <div>{priority}</div>
                                                     <div
                                                         className={`${
-                                                            styles.bullet
+                                                            taskStyles.bullet
                                                         } ${
-                                                            styles[
+                                                            taskStyles[
                                                                 priority ===
                                                                 "HIGH"
                                                                     ? "bullet-high"
