@@ -1,6 +1,7 @@
 import { FC } from "react"
 import { Box, Button, Modal } from "@mui/material"
 import styles from "./TaskDetailsModal.module.scss"
+import modalStyles from "../../styles/modules/Modal.module.scss"
 import { Task, useApp } from "../../contexts/AppContext"
 
 type Props = {
@@ -40,8 +41,8 @@ const TaskDetailsModal: FC<Props> = ({
                 aria-labelledby="Task details modal"
                 aria-describedby="This modal is used to show the task details"
             >
-                <Box className={styles.modal}>
-                    <div className={styles.subject}>Task Details</div>
+                <Box className={modalStyles.modal}>
+                    <div className={modalStyles.subject}>Task Details</div>
                     <div className={styles.title}>
                         <div>
                             Title: {title} ({priority})

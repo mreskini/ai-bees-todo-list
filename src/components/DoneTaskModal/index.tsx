@@ -2,6 +2,7 @@ import { FC } from "react"
 import { Box, Grid, Modal, Paper } from "@mui/material"
 import styles from "./DoneTasksModal.module.scss"
 import { useApp } from "../../contexts/AppContext"
+import modalStyles from "../../styles/modules/Modal.module.scss"
 
 type Props = {
     open: boolean
@@ -24,8 +25,8 @@ const DoneTasksModal: FC<Props> = ({ open, handleClose }) => {
                 aria-labelledby="Done tasks modal"
                 aria-describedby="This modal is used to show the done tasks"
             >
-                <Box className={styles.modal}>
-                    <div className={styles.subject}>Done Tasks</div>
+                <Box className={modalStyles.modal}>
+                    <div className={modalStyles.subject}>Done Tasks</div>
                     <div>
                         {doneTasksList.length === 0 && (
                             <div className={styles.label}>

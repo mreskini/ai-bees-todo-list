@@ -10,6 +10,7 @@ import {
 import { FC, useState } from "react"
 import { Priority, useApp } from "../../contexts/AppContext"
 import styles from "./CreateTaskModal.module.scss"
+import modalStyles from "../../styles/modules/Modal.module.scss"
 
 type Props = {
     open: boolean
@@ -69,8 +70,8 @@ const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
                 aria-labelledby="Create task modal"
                 aria-describedby="This modal is used to create new tasks"
             >
-                <Box className={styles.modal}>
-                    <div className={styles.subject}>Create New Task</div>
+                <Box className={modalStyles.modal}>
+                    <div className={modalStyles.subject}>Create New Task</div>
                     <TextField
                         label="Task title"
                         className={styles.title}

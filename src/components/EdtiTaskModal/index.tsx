@@ -10,6 +10,7 @@ import {
 import { FC, useEffect, useState } from "react"
 import { Priority, Task, useApp } from "../../contexts/AppContext"
 import styles from "./EditTaskModal.module.scss"
+import modalStyles from "../../styles/modules/Modal.module.scss"
 
 type Props = {
     open: boolean
@@ -69,8 +70,8 @@ const EditTaskModal: FC<Props> = ({ open, handleClose, task }) => {
                 aria-labelledby="Create task modal"
                 aria-describedby="This modal is used to create new tasks"
             >
-                <Box className={styles.modal}>
-                    <div className={styles.subject}>Edit Task</div>
+                <Box className={modalStyles.modal}>
+                    <div className={modalStyles.subject}>Edit Task</div>
                     <TextField
                         label="Task title"
                         className={styles.title}
