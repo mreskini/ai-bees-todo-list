@@ -2,7 +2,7 @@ import { FC } from "react"
 import { Box, Button, Modal } from "@mui/material"
 import styles from "./TaskDetailsModal.module.scss"
 import modalStyles from "../../styles/modules/Modal.module.scss"
-import { Task, useApp } from "../../contexts/AppContext"
+import { Task, useTasks } from "../../contexts/TasksContext"
 
 type Props = {
     open: boolean
@@ -18,7 +18,7 @@ const TaskDetailsModal: FC<Props> = ({
     editClick,
 }) => {
     // States and Hooks
-    const { doneTaskByToken, deleteTaskByToken } = useApp()
+    const { doneTaskByToken, deleteTaskByToken } = useTasks()
     const { token, title, description, targets, priority, status } = task
 
     // Methods

@@ -1,16 +1,16 @@
 import Header from "./components/Header"
 import TasksList from "./components/TasksList"
 import styles from "./App.module.scss"
-import AppProvider from "./contexts/AppContext"
+import TasksProvider from "./contexts/TasksContext"
 
 const App = () => {
     return (
-        <AppProvider>
+        <TasksProvider>
             <div className={styles.app}>
                 <Header />
                 <TasksList />
             </div>
-        </AppProvider>
+        </TasksProvider>
     )
 }
 

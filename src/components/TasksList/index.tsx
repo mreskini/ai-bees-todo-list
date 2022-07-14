@@ -1,6 +1,6 @@
 import { Button, Grid, Paper } from "@mui/material"
 import { useState } from "react"
-import { Task, useApp } from "../../contexts/AppContext"
+import { Task, useTasks } from "../../contexts/TasksContext"
 import CreateTaskModal from "../CreateTaskModal"
 import EditTaskModal from "../EdtiTaskModal"
 import FloatingAddButton from "../FloatingAddButton"
@@ -9,7 +9,7 @@ import styles from "./TasksList.module.scss"
 
 const TasksList = () => {
     // States and Hooks
-    const { tasksList, getTaskByToken, doneTaskByToken } = useApp()
+    const { tasksList, getTaskByToken, doneTaskByToken } = useTasks()
     const openTasksList = tasksList.filter(task => task.status === "OPEN")
     const showTasksList = openTasksList.length > 0
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)

@@ -8,7 +8,7 @@ import {
     TextField,
 } from "@mui/material"
 import { FC, useEffect, useState } from "react"
-import { Priority, Task, useApp } from "../../contexts/AppContext"
+import { Priority, Task, useTasks } from "../../contexts/TasksContext"
 import styles from "./EditTaskModal.module.scss"
 import modalStyles from "../../styles/modules/Modal.module.scss"
 
@@ -20,7 +20,7 @@ type Props = {
 
 const EditTaskModal: FC<Props> = ({ open, handleClose, task }) => {
     // States and Hooks
-    const { editTask } = useApp()
+    const { editTask } = useTasks()
     const [titleValue, setTitleValue] = useState<string>("")
     const [descriptionValue, setDescriptionValue] = useState<string>("")
     const [targetsValue, setTargetsValue] = useState<string>("")

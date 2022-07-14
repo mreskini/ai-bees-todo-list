@@ -8,7 +8,7 @@ import {
     TextField,
 } from "@mui/material"
 import { FC, useState } from "react"
-import { Priority, useApp } from "../../contexts/AppContext"
+import { Priority, useTasks } from "../../contexts/TasksContext"
 import styles from "./CreateTaskModal.module.scss"
 import modalStyles from "../../styles/modules/Modal.module.scss"
 
@@ -19,7 +19,7 @@ type Props = {
 
 const CreateTaskModal: FC<Props> = ({ open, handleClose }) => {
     // States and Hooks
-    const { addNewTask } = useApp()
+    const { addNewTask } = useTasks()
     const [titleValue, setTitleValue] = useState<string>("")
     const [descriptionValue, setDescriptionValue] = useState<string>("")
     const [targetsValue, setTargetsValue] = useState<string>("")
