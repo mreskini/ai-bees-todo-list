@@ -9,7 +9,11 @@ const FloatingAddButton = () => {
 
     // Render
     return (
-        <Button className={styles.fab} onClick={handleCreateModalOpen}>
+        <Button
+            data-testid="fab"
+            className={styles.fab}
+            onClick={() => handleCreateModalOpen()}
+        >
             <Fab color="primary" aria-label="Add new task">
                 <AddIcon />
             </Fab>

@@ -33,7 +33,7 @@ const TasksList = () => {
                 </Grid>
             ) : (
                 <Button variant="contained" onClick={handleCreateModalOpen}>
-                    Create Your First Task ;)
+                    Create Your First Task
                 </Button>
             )}
         </div>
