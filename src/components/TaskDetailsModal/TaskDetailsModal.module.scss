@@ -17,4 +17,34 @@
     font-weight: bold;
     font-size: 24px;
     margin-bottom: 25px;
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+}
+
+.title {
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.bullet {
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    &-high {
+        background-color: red;
+    }
+    &-mid {
+        background-color: orange;
+    }
+    &-low {
+        background-color: green;
+    }
 }

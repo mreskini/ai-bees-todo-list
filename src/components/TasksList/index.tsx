@@ -12,7 +12,9 @@ const TasksList = () => {
     const showTasksList = tasksList.length > 0
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
     const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false)
-    const [currentTask, setCurrentTask] = useState<Task>(tasksList[0])
+    const [currentTask, setCurrentTask] = useState<Task | undefined>(
+        tasksList[0]
+    )
 
     // Methods
     const handleCreateModalOpen = () => setIsCreateModalOpen(true)
@@ -34,11 +36,13 @@ const TasksList = () => {
                 open={isCreateModalOpen}
                 handleClose={handleCreateModalClose}
             />
-            <TaskDetailsModal
-                open={isDetailsModalOpen}
-                handleClose={handleDetailsModalClose}
-                task={currentTask}
-            />
+            {currentTask && (
+                <TaskDetailsModal
+                    open={isDetailsModalOpen}
+                    handleClose={handleDetailsModalClose}
+                    task={currentTask}
+                />
+            )}
             {showTasksList ? (
                 <Grid container alignItems="center" justifyContent="center">
                     <Grid xs={8}>
