@@ -11,24 +11,17 @@ import styles from "./TasksList.module.scss"
 const TasksList = () => {
     // States and Hooks
     const { tasksList } = useTasks()
-    const {
-        isCreateModalOpen,
-
-        handleCreateModalOpen,
-        handleCreateModalClose,
-    } = useApp()
+    const { handleCreateModalOpen } = useApp()
     const openTasksList = tasksList.filter(task => task.status === "OPEN")
     const showTasksList = openTasksList.length > 0
 
     //   Render
     return (
         <div className={styles.tasks}>
-            <CreateTaskModal
-                open={isCreateModalOpen}
-                handleClose={handleCreateModalClose}
-            />
+            <CreateTaskModal />
             <TaskDetailsModal />
             <EditTaskModal />
+
             {showTasksList ? (
                 <Grid container alignItems="center" justifyContent="center">
                     <Grid xs={8}>
