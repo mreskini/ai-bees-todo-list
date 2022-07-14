@@ -61,7 +61,7 @@ const TasksList = () => {
                             return <TaskItem task={task} key={index} />
                         })}
                     </Grid>
-                    <FloatingAddButton handleOpen={handleCreateModalOpen} />
+                    <FloatingAddButton />
                 </Grid>
             ) : (
                 <Button variant="contained" onClick={handleCreateModalOpen}>
