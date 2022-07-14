@@ -6,7 +6,9 @@ import CreateTaskModal from "."
 import AppProvider, { useApp } from "../../contexts/AppContext"
 import TasksProvider from "../../contexts/TasksContext"
 
-// This component is tricky and harder to i
+// This component is harder to test as we need to access the context but we cannot access that inside the test block,
+// that's why we are trying to use Mock Components here.
+
 const MockCreateTaskModal = () => {
     return (
         <TasksProvider>
@@ -24,6 +26,7 @@ const CustomCreateTaskModal = () => {
     }, [])
     return <CreateTaskModal />
 }
+
 describe("CreateTaskModal component tests", () => {
     it("Has 'Create New Task' subject", () => {
         render(<MockCreateTaskModal />)
