@@ -30,6 +30,13 @@ interface AppContextInterface {
     getTaskByToken(token: string): Task
     doneTaskByToken(token: string): void
     deleteTaskByToken(token: string): void
+    editTask(
+        token: string,
+        title: string,
+        description: string,
+        targets: string,
+        priority: Priority
+    ): void
 }
 
 const initialContextValue = {
@@ -49,6 +56,7 @@ const initialContextValue = {
     },
     doneTaskByToken: () => undefined,
     deleteTaskByToken: () => undefined,
+    editTask: () => undefined,
 }
 
 const AppContext = createContext<AppContextInterface>(initialContextValue)
@@ -106,6 +114,24 @@ const AppProvider: React.FC<Props> = ({ children }) => {
         const updatedTasksList = tasksList.filter(task => task.token !== token)
         setTasksList(updatedTasksList)
     }
+    const editTask = (
+        token: string,
+        title: string,
+        description: string,
+        targets: string,
+        priority: Priority
+    ): void => {
+        const updatedTasksList = tasksList.map(task => {
+            if (task.token === token) {
+                task.title = title
+                task.description = description
+                task.targets = targets
+                task.priority = priority
+            }
+            return task
+        })
+        setTasksList(updatedTasksList)
+    }
 
     useEffect(() => {
         console.log(tasksList)
@@ -122,6 +148,7 @@ const AppProvider: React.FC<Props> = ({ children }) => {
         getTaskByToken,
         doneTaskByToken,
         deleteTaskByToken,
+        editTask,
     }
 
     // Render

@@ -7,9 +7,15 @@ type Props = {
     open: boolean
     handleClose(): void
     task: Task
+    editClick(task: Task): void
 }
 
-const TaskDetailsModal: FC<Props> = ({ open, handleClose, task }) => {
+const TaskDetailsModal: FC<Props> = ({
+    open,
+    handleClose,
+    task,
+    editClick,
+}) => {
     // States and Hooks
     const { doneTaskByToken, deleteTaskByToken } = useApp()
     const { token, title, description, targets, priority, status } = task
@@ -46,7 +52,11 @@ const TaskDetailsModal: FC<Props> = ({ open, handleClose, task }) => {
                         <div>{description}</div>
                     </div>
                     <div className={styles.actions}>
-                        <Button variant="contained" color="info">
+                        <Button
+                            variant="contained"
+                            color="info"
+                            onClick={() => editClick(task)}
+                        >
                             Edit Task
                         </Button>
                         <Button
