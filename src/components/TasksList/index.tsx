@@ -30,6 +30,13 @@ const TasksList = () => {
     }
 
     const handleDetailsModalClose = () => setIsDetailsModalOpen(false)
+    const onEditTaskClick = (event: any): void => {
+        event.stopPropagation()
+    }
+    const onDoneTaskClick = (event: any, token: string): void => {
+        doneTaskByToken(token)
+        event.stopPropagation()
+    }
 
     //   Render
     return (
@@ -121,8 +128,9 @@ const TasksList = () => {
                                                         <Button
                                                             variant="contained"
                                                             color="success"
-                                                            onClick={() =>
-                                                                doneTaskByToken(
+                                                            onClick={event =>
+                                                                onDoneTaskClick(
+                                                                    event,
                                                                     token
                                                                 )
                                                             }
@@ -132,6 +140,9 @@ const TasksList = () => {
                                                         <Button
                                                             variant="contained"
                                                             color="info"
+                                                            onClick={
+                                                                onEditTaskClick
+                                                            }
                                                         >
                                                             Edit Task
                                                         </Button>

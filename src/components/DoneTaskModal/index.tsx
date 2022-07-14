@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { Box, Button, Grid, Modal, Paper } from "@mui/material"
+import { Box, Grid, Modal, Paper } from "@mui/material"
 import styles from "./DoneTasksModal.module.scss"
 import { useApp } from "../../contexts/AppContext"
 
