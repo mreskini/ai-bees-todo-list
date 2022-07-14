@@ -5,12 +5,21 @@ type Props = {
     children: JSX.Element
 }
 
+const dummyTask: Task = {
+    token: "kdf839gfcnkdl348",
+    title: "Dummy Title",
+    description: "Dummy Description",
+    targets: "Dummy Targets",
+    priority: "HIGH",
+    status: "DONE",
+}
+
 interface AppContextInterface {
     isCreateModalOpen: boolean
     isDetailsModalOpen: boolean
     isEditModalOpen: boolean
     isDoneTasksModalOpen: boolean
-    currentTask: Task | undefined | null
+    currentTask: Task
 
     setIsCreateModalOpen(value: boolean): void
     setIsDetailsModalOpen(value: boolean): void
@@ -35,7 +44,7 @@ const initialContextValue = {
     isDetailsModalOpen: false,
     isEditModalOpen: false,
     isDoneTasksModalOpen: false,
-    currentTask: null,
+    currentTask: dummyTask,
 
     setIsCreateModalOpen: () => undefined,
     setIsDetailsModalOpen: () => undefined,
@@ -74,9 +83,7 @@ const AppProvider: React.FC<Props> = ({ children }) => {
     const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false)
     const [isDoneTasksModalOpen, setIsDoneTaskModalOpen] =
         useState<boolean>(false)
-    const [currentTask, setCurrentTask] = useState<Task | undefined | null>(
-        null
-    )
+    const [currentTask, setCurrentTask] = useState<Task>(dummyTask)
 
     // Methods
     const handleCreateModalOpen = () => setIsCreateModalOpen(true)
