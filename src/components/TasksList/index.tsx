@@ -13,6 +13,7 @@ const TasksList = () => {
     const showTasksList = openTasksList.length > 0
     const [isCreateModalOpen, setIsCreateModalOpen] = useState(false)
     const [isDetailsModalOpen, setIsDetailsModalOpen] = useState(false)
+
     const [currentTask, setCurrentTask] = useState<Task | undefined>(
         openTasksList[0]
     )
