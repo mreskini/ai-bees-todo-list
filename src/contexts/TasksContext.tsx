@@ -27,7 +27,6 @@ interface TasksContextInterface {
         priority: Priority,
         status: Status
     ): void
-    getTaskByToken(token: string): Task
     doneTaskByToken(token: string): void
     deleteTaskByToken(token: string): void
     editTask(
@@ -43,17 +42,6 @@ const initialContextValue = {
     tasksList: [],
     setTasksList: () => undefined,
     addNewTask: () => undefined,
-    getTaskByToken: () => {
-        const task: Task = {
-            token: "TOKEN",
-            title: "TITLE",
-            description: "DESCRIPTION",
-            targets: "TARGETS",
-            priority: "LOW",
-            status: "DONE",
-        }
-        return task
-    },
     doneTaskByToken: () => undefined,
     deleteTaskByToken: () => undefined,
     editTask: () => undefined,
@@ -94,10 +82,6 @@ const TasksProvider: React.FC<Props> = ({ children }) => {
             },
             ...tasksList,
         ])
-    }
-    const getTaskByToken = (token: string): Task => {
-        const task = tasksList.filter(item => item.token === token)[0]
-        return task
     }
     const doneTaskByToken = (token: string): void => {
         const updatedTasksList = tasksList.map(item => {
@@ -145,7 +129,6 @@ const TasksProvider: React.FC<Props> = ({ children }) => {
 
         // Methods
         addNewTask,
-        getTaskByToken,
         doneTaskByToken,
         deleteTaskByToken,
         editTask,

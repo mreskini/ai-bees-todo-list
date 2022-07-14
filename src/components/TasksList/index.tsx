@@ -10,7 +10,7 @@ import styles from "./TasksList.module.scss"
 
 const TasksList = () => {
     // States and Hooks
-    const { tasksList, getTaskByToken, doneTaskByToken } = useTasks()
+    const { tasksList, doneTaskByToken } = useTasks()
     const { handleCreateModalOpen, handleCreateModalClose, isCreateModalOpen } =
         useApp()
 
@@ -24,8 +24,7 @@ const TasksList = () => {
     )
 
     // Methods
-    const handleDetailsModalOpen = (token: string) => {
-        const task = getTaskByToken(token)
+    const handleDetailsModalOpen = (task: Task) => {
         setCurrentTask(task)
         setIsDetailsModalOpen(true)
     }
@@ -85,9 +84,7 @@ const TasksList = () => {
                                 <Button
                                     key={index}
                                     className={styles.item}
-                                    onClick={() =>
-                                        handleDetailsModalOpen(token)
-                                    }
+                                    onClick={() => handleDetailsModalOpen(task)}
                                 >
                                     <Paper
                                         variant="outlined"
