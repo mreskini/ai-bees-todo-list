@@ -46,3 +46,32 @@ This project uses Prettier and ESLint to stop most of the debates over styles an
     "endOfLine": "auto"
 }
 ```
+
+# Testing
+
+There are a few ways to test React components. Broadly, they divide into two categories:
+
+-   Rendering component trees in a simplified test environment and asserting on their output.
+-   Running a complete app in a realistic browser environment (also known as e2e tests).
+
+When choosing a testing tool, you should consider a few tradeoffs:
+
+-   How much to mock
+-   Iteration speed vs Realistic environment
+
+Here are the recommended tools:
+
+-   Jest is a JavaScript test runner that lets you access the DOm via jsdom. (it's often good enough for testing React components). Jest provides a great operation speed combined with powerful features like mocking modules and timers so you can have more control over the code executes.
+-   React Testing Library is a set of helpers that let you test React components without relying on their implementation details.
+    Although it doesn't provide a way to "shallowly" render a component without its children, a tet runner like Jest lets you do this by mocking.
+
+This projects uses Jest as its main testing tool.
+
+# Why to use Jest
+
+Here's a shortlist of Jest advantages:
+
+-   Offers a CLI tool
+-   Comes with an interactive mode that automatically runs all affected tests for the code changes you've made in your last commit
+-   Provides syntax to test a single test or skip tests.
+-   Brings easy mocking to developers as it's one of the most painful things to do for testing engineers.
