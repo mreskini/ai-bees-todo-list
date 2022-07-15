@@ -7,7 +7,7 @@ I'm using Netlify service, as the CI/CD system for this project, here is the lin
 ## What considerations did I have when making decisions about the architecture of the code?
 
 -   Scalability of the code, so that adding new features to the app is easy and as the app grows, the complexity grows with the lowest slope possible.
--   Testability of the code, so that the behavior of almost all parts of the app can be verified. Please note that the unit tests inside this test are not complete, and these are were put inside the code to demonstrate the testability of the code, rather than having a fully-fledged test suite that can verify almost all edge cases and behaviors.
+-   Testability of the code, so that the behavior of almost all parts of the app can be verified. Please note that the unit tests in this project are not complete, and these were put inside the code to demonstrate the testability of the code, rather than having a fully-fledged test suite that can verify almost all edge cases and behaviors.
 -   Reusability of the code, so in the future and in the next iterations of development, already-developed components can be used. This inherently adds a little bit of overhead both in terms of time and complexity, but it can pay off in the long run.
 -   Having a single source of truth for UI state whenever possible, to minimize diverged data and view state in the app.
 
@@ -60,7 +60,7 @@ So, that's why this project uses scss modules other than the previous method men
 Git Flow Workflow simplifies parallel development because it isolated the new development from the released project. The team can collaborate better and spends less time managing the project versions if they use simple and clear branching strategy, such as Git Flow Workflow
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). I decided to use this convention because it makes it easier for people to contribute to your projects, by allowing them to explore a more structured commit history.
 
-At the end, I didn't delete most of my branches so that you can check the naming conventions and usages.
+Note: At the end, I didn't delete most of my branches so that you can check the naming conventions and usages.
 
 ## Prettier and ESLint
 
