@@ -21,15 +21,16 @@ I'm using Netlify service, as the CI/CD system for this project, here is the lin
 
 -   Having the core components of the app as separate framework that can be used easily in different projects which can decrease the maintenance headache.
 -   I would have some mock web server running that I could manipulate for UI tests to ensure proper behavior in different situations.
--   The Unit tests would be more comprehensive, to verify with much better accuracy. (currently, the tests show more the 'Testability'code rather than proper tests that can properly handle most edge cases.)
+-   The Unit tests would be more comprehensive, to verify with much better accuracy. (Currently, the tests show more the 'Testability' of the code rather than proper tests that can properly handle most edge cases.)
 
 ## Potential improvements
 
 Some potential improvements can be made that are out of the scope of this project. Some of these include:
 
--   Currently, the application is only designed for the desktop view and not tablet or mobile. I didn't spend time on making this dynamic as this is supposed to be a short and test project.
--   For the sake of simplicity, we are only using two Context API's. One is for the Tasks and the other one is for the App. We can use more Context API's at some points to make eliminate the rest of the boilerplate codes, but because this is a small project, such an action can lead to more complex structure.
+-   Currently, the application is only designed for the desktop view and not tablet or mobile. I didn't spend time on making this responsive as this is supposed to be a short and test project.
+-   For the sake of simplicity, we are only using two Context API's. One is for the Tasks and the other one is for the App. We can use more Context API's at some points to eliminate the rest of the boilerplate codes, but because this is a small project, such an action can lead to more complex structure.
 -   The project structure can vary due to projects dependencies and demands, I'm using a simple one for this project, It's also necessary to update the project structure for a bigger project.
+-   There will be edge cases for the UI part to handle for sure, but the general functionality works decently.
 
 # In-detail
 
@@ -60,7 +61,7 @@ So, that's why this project uses scss modules other than the previous method men
 Git Flow Workflow simplifies parallel development because it isolated the new development from the released project. The team can collaborate better and spends less time managing the project versions if they use simple and clear branching strategy, such as Git Flow Workflow
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). I decided to use this convention because it makes it easier for people to contribute to your projects, by allowing them to explore a more structured commit history.
 
-Note: At the end, I didn't delete most of my branches so that you can check the naming conventions and usages.
+Note: At the end, I didn't delete most of my branches so that you can check the naming conventions and usages. Also, it's important to note that, I've added images in the PR's alongside the complete description of the changes to make code review process easier and the changes are more sensible this way.
 
 ## Prettier and ESLint
 
