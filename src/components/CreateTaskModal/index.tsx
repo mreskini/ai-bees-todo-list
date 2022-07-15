@@ -38,7 +38,7 @@ const CreateTaskModal = () => {
                 resetForm()
                 handleClose()
             })
-            .catch(error => setError(error.errors))
+            .catch(error => setError(error.errors[0]))
     }
 
     // Render
