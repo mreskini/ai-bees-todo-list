@@ -3,6 +3,7 @@ import { FC } from "react"
 import { useApp } from "../../contexts/AppContext"
 import { Task, useTasks } from "../../contexts/TasksContext"
 import taskStyles from "../../styles/modules/Task.module.scss"
+import { filterTextLength } from "../../utilities/functions/filterTextLength"
 
 type Props = {
     task: Task
@@ -22,13 +23,6 @@ const TaskItem: FC<Props> = ({ task }) => {
     const onEditTaskClick = (event: any, task: Task): void => {
         event.stopPropagation()
         handleEditModalOpen(task)
-    }
-
-    const filterTextLength = (text: string) => {
-        let result = text.slice(0, 30)
-        if (text.length > 30) result += "..."
-
-        return result
     }
 
     // Render

@@ -4,6 +4,7 @@ import modalStyles from "../../styles/modules/Modal.module.scss"
 import taskStyles from "../../styles/modules/Task.module.scss"
 import { useTasks } from "../../contexts/TasksContext"
 import { useApp } from "../../contexts/AppContext"
+import { filterTextLength } from "../../utilities/functions/filterTextLength"
 
 const DoneTasksModal = () => {
     // States and Hooks
@@ -53,19 +54,18 @@ const DoneTasksModal = () => {
                                                             taskStyles.title
                                                         }
                                                     >
-                                                        {title}
+                                                        {filterTextLength(
+                                                            title
+                                                        )}
                                                     </div>
                                                     <div
                                                         className={
                                                             taskStyles.description
                                                         }
                                                     >
-                                                        {description.slice(
-                                                            0,
-                                                            30
+                                                        {filterTextLength(
+                                                            description
                                                         )}
-                                                        {description.length >
-                                                            30 && "..."}
                                                     </div>
                                                 </Grid>
                                                 <Grid>
