@@ -74,6 +74,7 @@ const TasksProvider: React.FC<Props> = ({ children }) => {
         status: Status
     ): void => {
         setTasksList([
+            ...tasksList,
             {
                 token: uuid(),
                 title,
@@ -82,7 +83,6 @@ const TasksProvider: React.FC<Props> = ({ children }) => {
                 priority,
                 status,
             },
-            ...tasksList,
         ])
     }
     const doneTaskByToken = (token: string): void => {

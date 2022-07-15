@@ -3,6 +3,7 @@ import { FC } from "react"
 import { useApp } from "../../contexts/AppContext"
 import { Task, useTasks } from "../../contexts/TasksContext"
 import taskStyles from "../../styles/modules/Task.module.scss"
+import { filterTextLength } from "../../utilities/functions/filterTextLength"
 
 type Props = {
     task: Task
@@ -41,10 +42,11 @@ const TaskItem: FC<Props> = ({ task }) => {
                     justifyContent="space-between"
                 >
                     <Grid>
-                        <div className={taskStyles.title}>{title}</div>
+                        <div className={taskStyles.title}>
+                            {filterTextLength(title)}
+                        </div>
                         <div className={taskStyles.description}>
-                            {description.slice(0, 30)}
-                            {description.length > 30 && "..."}
+                            {filterTextLength(description)}
                         </div>
                     </Grid>
                     <Grid>

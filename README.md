@@ -22,6 +22,7 @@ I'm using Netlify service, as the CI/CD system for this project, here is the lin
 -   Having the core components of the app as separate framework that can be used easily in different projects which can decrease the maintenance headache.
 -   I would have some mock web server running that I could manipulate for UI tests to ensure proper behavior in different situations.
 -   The Unit tests would be more comprehensive, to verify with much better accuracy. (Currently, the tests show more the 'Testability' of the code rather than proper tests that can properly handle most edge cases.)
+-   I would add Formik package for the form validations alongside (yup). This project is only using yup for the form validations (but no use of Formik or any other similar packages)
 
 ## Potential improvements
 

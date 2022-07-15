@@ -1,9 +1,10 @@
-import { Box, Modal } from "@mui/material"
+import { Alert, Box, Modal, Typography } from "@mui/material"
 import { useEffect, useState } from "react"
 import { Priority, useTasks } from "../../contexts/TasksContext"
 import modalStyles from "../../styles/modules/Modal.module.scss"
 import { useApp } from "../../contexts/AppContext"
 import TaskForm from "../TaskForm"
+import * as yup from "yup"
 
 const EditTaskModal = () => {
     // States and Hooks
@@ -18,11 +19,22 @@ const EditTaskModal = () => {
     const [description, setDescription] = useState<string>("")
     const [targets, setTargets] = useState<string>("")
     const [priority, setPriority] = useState<Priority>("LOW")
+    const [error, setError] = useState<string>("")
 
     // Methods
     const editTaskButtonClick = () => {
-        editTask(task.token, title, description, targets, priority)
-        handleClose()
+        setError("")
+        CreateTaskFormSchema.validate({
+            priority,
+            targets,
+            description,
+            title,
+        })
+            .then(validation => {
+                editTask(task.token, title, description, targets, priority)
+                handleClose()
+            })
+            .catch(error => setError(error.errors))
     }
 
     useEffect(() => {
@@ -30,6 +42,7 @@ const EditTaskModal = () => {
         setDescription(task.description)
         setTargets(task.targets)
         setPriority(task.priority)
+        setError("")
     }, [task])
 
     // Render
@@ -49,6 +62,15 @@ const EditTaskModal = () => {
                         (One for Create Modal and One for the Edit Modal, and because of using ts, there will be lots of unwanted boilerplate codes)
                         So, I decided to use Props (though this might cause to prop plowing, but it's the better way to use here)
                     */}
+                    {error && (
+                        <Box marginBottom={"15px"}>
+                            <Alert severity="error">
+                                <Typography textTransform={"capitalize"}>
+                                    {error}
+                                </Typography>
+                            </Alert>
+                        </Box>
+                    )}
                     <TaskForm
                         title={title}
                         setTitle={setTitle}
@@ -69,3 +91,10 @@ const EditTaskModal = () => {
 }
 
 export default EditTaskModal
+
+const CreateTaskFormSchema = yup.object().shape({
+    priority: yup.string().required(),
+    targets: yup.string().required(),
+    description: yup.string().min(10).required(),
+    title: yup.string().min(5).required(),
+})

@@ -23,7 +23,13 @@ const TasksList = () => {
             <EditTaskModal />
 
             {showTasksList ? (
-                <Grid container alignItems="center" justifyContent="center">
+                <Grid
+                    container
+                    alignItems="start"
+                    justifyContent="center"
+                    paddingTop="3%"
+                    paddingBottom="3%"
+                >
                     <Grid xs={8}>
                         {openTasksList.map((task, index) => {
                             return <TaskItem task={task} key={index} />
@@ -32,9 +38,11 @@ const TasksList = () => {
                     <FloatingAddButton />
                 </Grid>
             ) : (
-                <Button variant="contained" onClick={handleCreateModalOpen}>
-                    Create Your First Task
-                </Button>
+                <div className={styles.action}>
+                    <Button variant="contained" onClick={handleCreateModalOpen}>
+                        Create Your First Task
+                    </Button>
+                </div>
             )}
         </div>
     )

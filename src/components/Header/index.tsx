@@ -12,7 +12,7 @@ const Header = () => {
 
     // Render
     return (
-        <>
+        <div className={styles.layout}>
             <DoneTasksModal />
             <div className={styles.header}>
                 {showDoneTasksButton && (
@@ -29,7 +29,7 @@ const Header = () => {
                 <div className={styles.title}>Hello World</div>
                 {showDoneTasksButton && <div></div>}
             </div>
-        </>
+        </div>
     )
 }
 
