@@ -1,9 +1,10 @@
-import { Box, Modal } from "@mui/material"
+import { Alert, Box, Modal, Typography } from "@mui/material"
 import { useState } from "react"
 import { Priority, useTasks } from "../../contexts/TasksContext"
 import modalStyles from "../../styles/modules/Modal.module.scss"
 import { useApp } from "../../contexts/AppContext"
 import TaskForm from "../TaskForm"
+import * as yup from "yup"
 
 const CreateTaskModal = () => {
     // States and Hooks
@@ -14,6 +15,7 @@ const CreateTaskModal = () => {
     const [description, setDescription] = useState<string>("")
     const [targets, setTargets] = useState<string>("")
     const [priority, setPriority] = useState<Priority>("LOW")
+    const [error, setError] = useState<string>("")
 
     // Methods
     const resetForm = () => {
@@ -24,9 +26,19 @@ const CreateTaskModal = () => {
     }
 
     const addToTasksButtonClicked = () => {
-        addNewTask(title, description, targets, priority, "OPEN")
-        resetForm()
-        handleClose()
+        setError("")
+        CreateTaskFormSchema.validate({
+            priority,
+            targets,
+            description,
+            title,
+        })
+            .then(validation => {
+                addNewTask(title, description, targets, priority, "OPEN")
+                resetForm()
+                handleClose()
+            })
+            .catch(error => setError(error.errors[0]))
     }
 
     // Render
@@ -45,6 +57,16 @@ const CreateTaskModal = () => {
                     >
                         Create New Task
                     </div>
+
+                    {error && (
+                        <Box marginBottom={"15px"}>
+                            <Alert severity="error">
+                                <Typography textTransform={"capitalize"}>
+                                    {error}
+                                </Typography>
+                            </Alert>
+                        </Box>
+                    )}
                     <TaskForm
                         title={title}
                         setTitle={setTitle}
@@ -65,3 +87,10 @@ const CreateTaskModal = () => {
 }
 
 export default CreateTaskModal
+
+const CreateTaskFormSchema = yup.object().shape({
+    priority: yup.string().required(),
+    targets: yup.string().required(),
+    description: yup.string().min(10).required(),
+    title: yup.string().min(5).required(),
+})
