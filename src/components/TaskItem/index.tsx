@@ -40,11 +40,7 @@ const TaskItem: FC<Props> = ({ task, hasInteractions }) => {
                 hasInteractions ? () => handleDetailsModalOpen(task) : undefined
             }
         >
-            <Paper
-                variant="outlined"
-                elevation={1}
-                className={taskStyles["item-inner"]}
-            >
+            <Paper variant="outlined" className={taskStyles["item-inner"]}>
                 <Grid
                     display="flex"
                     alignItems="center"

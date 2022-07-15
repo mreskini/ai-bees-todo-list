@@ -30,7 +30,7 @@ const TasksList = () => {
                     paddingTop="3%"
                     paddingBottom="3%"
                 >
-                    <Grid xs={8}>
+                    <Grid item xs={8}>
                         {openTasksList.map((task, index) => {
                             return (
                                 <TaskItem
