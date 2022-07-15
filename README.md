@@ -1,10 +1,40 @@
-# Overview
+# AI bees React Assignment
 
-This is a to-do list application for AI-Bees. This document explains some of the development decisions. This project is not a big or large-scale project and is a small one, but to use the best practices of big projects, I treat this application as a big one and use the well-known best practices though it's small by nature.
+## A quick look over the app
 
-On the other hand, I decided not delete the merged branches so that you can check the process and evaluate better.
+I'm using Netlify service, as the CI/CD system for this project, here is the link to production version of the app: https://polite-pudding-487867.netlify.app/
 
-# SCSS Modules over BEM
+## What considerations did I have when making decisions about the architecture of the code?
+
+-   Scalability of the code, so that adding new features to the app is easy and as the app grows, the complexity grows with the lowest slope possible.
+-   Testability of the code, so that the behavior of almost all parts of the app can be verified. Please note that the unit tests in this project are not complete, and these were put inside the code to demonstrate the testability of the code, rather than having a fully-fledged test suite that can verify almost all edge cases and behaviors.
+-   Reusability of the code, so in the future and in the next iterations of development, already-developed components can be used. This inherently adds a little bit of overhead both in terms of time and complexity, but it can pay off in the long run.
+-   Having a single source of truth for UI state whenever possible, to minimize diverged data and view state in the app.
+
+## Other things to note:
+
+-   The code has been documented wherever deemed necessary.
+-   Every single commit in the project's history resolves around a single logical change. A more granular approach can be taken as well.
+-   Naming conventions almost follow the best practices known in react. You can find more information about it [here](https://www.upbeatcode.com/react/react-naming-conventions/).
+
+## What would I do differently if this project was a fully fledged one and its scope was not limited to this project?
+
+-   Having the core components of the app as separate framework that can be used easily in different projects which can decrease the maintenance headache.
+-   I would have some mock web server running that I could manipulate for UI tests to ensure proper behavior in different situations.
+-   The Unit tests would be more comprehensive, to verify with much better accuracy. (Currently, the tests show more the 'Testability' of the code rather than proper tests that can properly handle most edge cases.)
+
+## Potential improvements
+
+Some potential improvements can be made that are out of the scope of this project. Some of these include:
+
+-   Currently, the application is only designed for the desktop view and not tablet or mobile. I didn't spend time on making this responsive as this is supposed to be a short and test project.
+-   For the sake of simplicity, we are only using two Context API's. One is for the Tasks and the other one is for the App. We can use more Context API's at some points to eliminate the rest of the boilerplate codes, but because this is a small project, such an action can lead to more complex structure.
+-   The project structure can vary due to projects dependencies and demands, I'm using a simple one for this project, It's also necessary to update the project structure for a bigger project.
+-   There will be edge cases for the UI part to handle for sure, but the general functionality works decently.
+
+# In-detail
+
+## SCSS Modules over BEM
 
 As developers (in large teams) attempt to mitigate global scope issues, they'll begin to over qualify selectors in an attempt to create a pseudo-scope. This never works well. Something like the following selector:
 
@@ -26,14 +56,14 @@ Used properly, BEM is a sound approach to creating modular, reusable and structu
 
 So, that's why this project uses scss modules other than the previous method mentioned. They generate locally scoped class names that are easy to reason about, without introducing complex conventions.
 
-# Git Flow and Commit Messages
+## Git Flow and Commit Messages
 
 Git Flow Workflow simplifies parallel development because it isolated the new development from the released project. The team can collaborate better and spends less time managing the project versions if they use simple and clear branching strategy, such as Git Flow Workflow
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). I decided to use this convention because it makes it easier for people to contribute to your projects, by allowing them to explore a more structured commit history.
 
-At the end, I didn't delete most of my branches so that you can check the naming conventions and usages.
+Note: At the end, I didn't delete most of my branches so that you can check the naming conventions and usages. Also, it's important to note that, I've added images in the PR's alongside the complete description of the changes to make code review process easier and the changes are more sensible this way. For example [this PR](https://github.com/mreskini/ai-bees-todo-list/pull/13)
 
-# Prettier and ESLint
+## Prettier and ESLint
 
 This project uses Prettier and ESLint to stop most of the debates over styles and is fully automatic. Prettier is running as plugin for ESLint. Here is the configuration file:
 
@@ -47,7 +77,7 @@ This project uses Prettier and ESLint to stop most of the debates over styles an
 }
 ```
 
-# Testing
+## Testing
 
 There are a few ways to test React components. Broadly, they divide into two categories:
 
@@ -67,7 +97,7 @@ Here are the recommended tools:
 
 This projects uses Jest and React Testing Library as its main testing tools.
 
-# Why to use Jest
+## Why to use Jest
 
 Here's a shortlist of Jest advantages:
 
@@ -76,6 +106,6 @@ Here's a shortlist of Jest advantages:
 -   Provides syntax to test a single test or skip tests.
 -   Brings easy mocking to developers as it's one of the most painful things to do for testing engineers.
 
-# Important note about testing
+## Important note about testing
 
 Although this is a very simple and small application, but testing all the features (specially writing unit tests) can take a huge amount of time which is not the purpose of this assignment for sure. For the testing section, I tried to test different things to demo the different techniques and tricks. You can find Mock Components in `CreateTaskModal.test.tsx` test block, you can see how we are using the MockCreateTaskModal component to get rid of the Context API issues in the test block. In the same file, you can see how we can use the userEvent and fireEvent to make changes to the dom and evaluate the changes after that. In `TaskForm.test.tsx` other than the Mocking process that I mentioned earlier, you can see how we can test the UI elements easily using react testing library. So, I didn't go over all the features and test them and etc. I just tried to write some tests for some features but the other features are the same and we just need to copy and paste these scenarios to finish the whole testing process (Also due to the nature of this project, I could not demo some of techniques and etc).
