@@ -1,3 +1,28 @@
+# AI bees React Assignment
+
+## A quick look over the app
+
+I'm using Netlify service, as the CI/CD system for this project, here is the link to production version of the app: https://polite-pudding-487867.netlify.app/
+
+## What considerations did I have when making decisions about the architecture of the code?
+
+-   Scalability of the code, so that adding new features to the app is easy and as the app grows, the complexity grows with the lowest slope possible.
+-   Testability of the code, so that the behavior of almost all parts of the app can be verified. Please note that the unit tests inside this test are not complete, and these are were put inside the code to demonstrate the testability of the code, rather than having a fully-fledged test suite that can verify almost all edge cases and behaviors.
+-   Reusability of the code, so in the future and in the next iterations of development, already-developed components can be used. This inherently adds a little bit of overhead both in terms of time and complexity, but it can pay off in the long run.
+-   Having a single source of truth for UI state whenever possible, to minimize diverged data and view state in the app.
+
+## Other things to note:
+
+-   The code has been documented wherever deemed necessary.
+-   Every single commit in the project's history resolves around a single logical change. A more granular approach can be taken as well.
+-   Naming conventions almost follow the best practices known in react. You can find more information about it [here](https://www.upbeatcode.com/react/react-naming-conventions/).
+
+## What would I do differently if this project was a fully fledged one and its scope was not limited to this project?
+
+-   Having the core components of the app as separate framework that can be used easily in different projects which can decrease the maintenance headache.
+-   I would have some mock web server running that I could manipulate for UI tests to ensure proper behavior in different situations.
+-   The Unit tests would be more comprehensive, to verify with much better accuracy. (currently, the tests show more the 'Testability'code rather than proper tests that can properly handle most edge cases.)
+
 # Overview
 
 This is a to-do list application for AI-Bees. This document explains some of the development decisions. This project is not a big or large-scale project and is a small one, but to use the best practices of big projects, I treat this application as a big one and use the well-known best practices though it's small by nature.
