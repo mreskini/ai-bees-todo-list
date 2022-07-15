@@ -1,5 +1,5 @@
 import { Button, Grid, Paper } from "@mui/material"
-import { FC } from "react"
+import { FC, MouseEvent } from "react"
 import { useApp } from "../../contexts/AppContext"
 import { Task, useTasks } from "../../contexts/TasksContext"
 import taskStyles from "../../styles/modules/Task.module.scss"
@@ -17,11 +17,17 @@ const TaskItem: FC<Props> = ({ task, hasInteractions }) => {
     const { handleDetailsModalOpen, handleEditModalOpen } = useApp()
 
     // Methods
-    const onDoneTaskClick = (event: any, token: string): void => {
+    const onDoneTaskClick = (
+        event: MouseEvent<HTMLButtonElement>,
+        token: string
+    ): void => {
         doneTaskByToken(token)
         event.stopPropagation()
     }
-    const onEditTaskClick = (event: any, task: Task): void => {
+    const onEditTaskClick = (
+        event: MouseEvent<HTMLButtonElement>,
+        task: Task
+    ): void => {
         event.stopPropagation()
         handleEditModalOpen(task)
     }
@@ -34,11 +40,7 @@ const TaskItem: FC<Props> = ({ task, hasInteractions }) => {
                 hasInteractions ? () => handleDetailsModalOpen(task) : undefined
             }
         >
-            <Paper
-                variant="outlined"
-                elevation={1}
-                className={taskStyles["item-inner"]}
-            >
+            <Paper variant="outlined" className={taskStyles["item-inner"]}>
                 <Grid
                     display="flex"
                     alignItems="center"
