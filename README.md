@@ -23,13 +23,17 @@ I'm using Netlify service, as the CI/CD system for this project, here is the lin
 -   I would have some mock web server running that I could manipulate for UI tests to ensure proper behavior in different situations.
 -   The Unit tests would be more comprehensive, to verify with much better accuracy. (currently, the tests show more the 'Testability'code rather than proper tests that can properly handle most edge cases.)
 
-# Overview
+## Potential improvements
 
-This is a to-do list application for AI-Bees. This document explains some of the development decisions. This project is not a big or large-scale project and is a small one, but to use the best practices of big projects, I treat this application as a big one and use the well-known best practices though it's small by nature.
+Some potential improvements can be made that are out of the scope of this project. Some of these include:
 
-On the other hand, I decided not delete the merged branches so that you can check the process and evaluate better.
+-   Currently, the application is only designed for the desktop view and not tablet or mobile. I didn't spend time on making this dynamic as this is supposed to be a short and test project.
+-   For the sake of simplicity, we are only using two Context API's. One is for the Tasks and the other one is for the App. We can use more Context API's at some points to make eliminate the rest of the boilerplate codes, but because this is a small project, such an action can lead to more complex structure.
+-   The project structure can vary due to projects dependencies and demands, I'm using a simple one for this project, It's also necessary to update the project structure for a bigger project.
 
-# SCSS Modules over BEM
+# In-detail
+
+## SCSS Modules over BEM
 
 As developers (in large teams) attempt to mitigate global scope issues, they'll begin to over qualify selectors in an attempt to create a pseudo-scope. This never works well. Something like the following selector:
 
@@ -51,14 +55,14 @@ Used properly, BEM is a sound approach to creating modular, reusable and structu
 
 So, that's why this project uses scss modules other than the previous method mentioned. They generate locally scoped class names that are easy to reason about, without introducing complex conventions.
 
-# Git Flow and Commit Messages
+## Git Flow and Commit Messages
 
 Git Flow Workflow simplifies parallel development because it isolated the new development from the released project. The team can collaborate better and spends less time managing the project versions if they use simple and clear branching strategy, such as Git Flow Workflow
 This project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/). I decided to use this convention because it makes it easier for people to contribute to your projects, by allowing them to explore a more structured commit history.
 
 At the end, I didn't delete most of my branches so that you can check the naming conventions and usages.
 
-# Prettier and ESLint
+## Prettier and ESLint
 
 This project uses Prettier and ESLint to stop most of the debates over styles and is fully automatic. Prettier is running as plugin for ESLint. Here is the configuration file:
 
@@ -72,7 +76,7 @@ This project uses Prettier and ESLint to stop most of the debates over styles an
 }
 ```
 
-# Testing
+## Testing
 
 There are a few ways to test React components. Broadly, they divide into two categories:
 
@@ -92,7 +96,7 @@ Here are the recommended tools:
 
 This projects uses Jest and React Testing Library as its main testing tools.
 
-# Why to use Jest
+## Why to use Jest
 
 Here's a shortlist of Jest advantages:
 
@@ -101,6 +105,6 @@ Here's a shortlist of Jest advantages:
 -   Provides syntax to test a single test or skip tests.
 -   Brings easy mocking to developers as it's one of the most painful things to do for testing engineers.
 
-# Important note about testing
+## Important note about testing
 
 Although this is a very simple and small application, but testing all the features (specially writing unit tests) can take a huge amount of time which is not the purpose of this assignment for sure. For the testing section, I tried to test different things to demo the different techniques and tricks. You can find Mock Components in `CreateTaskModal.test.tsx` test block, you can see how we are using the MockCreateTaskModal component to get rid of the Context API issues in the test block. In the same file, you can see how we can use the userEvent and fireEvent to make changes to the dom and evaluate the changes after that. In `TaskForm.test.tsx` other than the Mocking process that I mentioned earlier, you can see how we can test the UI elements easily using react testing library. So, I didn't go over all the features and test them and etc. I just tried to write some tests for some features but the other features are the same and we just need to copy and paste these scenarios to finish the whole testing process (Also due to the nature of this project, I could not demo some of techniques and etc).
