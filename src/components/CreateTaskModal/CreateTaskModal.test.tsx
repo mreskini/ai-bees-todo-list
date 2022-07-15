@@ -28,8 +28,9 @@ const CustomCreateTaskModal = () => {
 }
 
 describe("CreateTaskModal component tests", () => {
+    beforeEach(() => render(<MockCreateTaskModal />))
+
     it("Has 'Create New Task' subject", () => {
-        render(<MockCreateTaskModal />)
         const element = screen.getByTestId("modal-title")
         expect(element.textContent).toBe("Create New Task")
     })
@@ -39,7 +40,6 @@ describe("CreateTaskModal component tests", () => {
     // Here we are testing to see if the modal is still on the page after we click the cancel button.
     // because the cancel button is supposed to close the modal.
     it("Cancel button closes the modal", () => {
-        render(<MockCreateTaskModal />)
         const element = screen.getByTestId("modal-cancel")
         userEvent.click(element)
         const title = screen.queryByTestId("modal-title")
@@ -49,13 +49,12 @@ describe("CreateTaskModal component tests", () => {
     // We cannot test the add new task process because that would be an integration test, we only want to add simple unit tests for this task.
     // But, we can test the user events like changing the values and ...
     it("Can change the task title input field", () => {
-        render(<MockCreateTaskModal />)
         const titleInput: HTMLInputElement = screen.getByLabelText("Task title")
         fireEvent.change(titleInput, { target: { value: "Hello Foobar" } })
         expect(titleInput.value).toBe("Hello Foobar")
     })
+
     it("Can change the task description input field", () => {
-        render(<MockCreateTaskModal />)
         const titleInput: HTMLInputElement =
             screen.getByLabelText("Task description")
         fireEvent.change(titleInput, { target: { value: "Hello there" } })
