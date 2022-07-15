@@ -63,7 +63,56 @@ export const useTasks = () => {
 
 const TasksProvider: React.FC<Props> = ({ children }) => {
     // States and Hooks
-    const [tasksList, setTasksList] = useState<Task[]>([])
+    const [tasksList, setTasksList] = useState<Task[]>([
+        {
+            token: "0fa49501-c2f7-4d7b-929c-9bf435e24877",
+            title: "aaa",
+            description: "aaaa",
+            targets: "aaa",
+            priority: "MEDIUM",
+            status: "OPEN",
+        },
+        {
+            token: "41f3f300-3b9b-43a4-b8b5-8fc1f61603e4",
+            title: "fff",
+            description: "fff",
+            targets: "fff",
+            priority: "HIGH",
+            status: "OPEN",
+        },
+        {
+            token: "8af76992-7b62-4664-846e-d003732f8270",
+            title: "fff",
+            description: "fff",
+            targets: "ffff",
+            priority: "MEDIUM",
+            status: "OPEN",
+        },
+        {
+            token: "76ed3833-e03c-49d2-af65-8a910d86da20",
+            title: "fff",
+            description: "fffff",
+            targets: "",
+            priority: "MEDIUM",
+            status: "OPEN",
+        },
+        {
+            token: "ddfe8072-f837-47f0-bff6-77930dcfc8ab",
+            title: "aaaa",
+            description: "ddddd",
+            targets: "",
+            priority: "LOW",
+            status: "OPEN",
+        },
+        {
+            token: "ffa4fa66-b356-4b84-bdef-e05379f1e907",
+            title: "Mohammad",
+            description: "Eskini Is here\n",
+            targets: "targets will go here",
+            priority: "HIGH",
+            status: "DONE",
+        },
+    ])
 
     // Methods
     const addNewTask = (
@@ -74,6 +123,7 @@ const TasksProvider: React.FC<Props> = ({ children }) => {
         status: Status
     ): void => {
         setTasksList([
+            ...tasksList,
             {
                 token: uuid(),
                 title,
@@ -82,7 +132,6 @@ const TasksProvider: React.FC<Props> = ({ children }) => {
                 priority,
                 status,
             },
-            ...tasksList,
         ])
     }
     const doneTaskByToken = (token: string): void => {
