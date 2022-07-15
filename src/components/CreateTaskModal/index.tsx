@@ -33,7 +33,7 @@ const CreateTaskModal = () => {
             description,
             title,
         })
-            .then(validation => {
+            .then(() => {
                 addNewTask(title, description, targets, priority, "OPEN")
                 resetForm()
                 handleClose()

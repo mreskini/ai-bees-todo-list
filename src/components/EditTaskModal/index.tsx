@@ -30,7 +30,7 @@ const EditTaskModal = () => {
             description,
             title,
         })
-            .then(validation => {
+            .then(() => {
                 editTask(task.token, title, description, targets, priority)
                 handleClose()
             })
