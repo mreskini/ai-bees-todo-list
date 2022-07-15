@@ -3,6 +3,7 @@ import styles from "./TaskDetailsModal.module.scss"
 import modalStyles from "../../styles/modules/Modal.module.scss"
 import { Task, useTasks } from "../../contexts/TasksContext"
 import { useApp } from "../../contexts/AppContext"
+import { filterTextLength } from "../../utilities/functions/filterTextLength"
 
 const TaskDetailsModal = () => {
     // States and Hooks
@@ -43,7 +44,7 @@ const TaskDetailsModal = () => {
                     <div className={modalStyles.subject}>Task Details</div>
                     <div className={styles.title}>
                         <div>
-                            Title: {title} ({priority})
+                            Title: {filterTextLength(title)} ({priority})
                         </div>
                     </div>
                     <div className={styles.description}>

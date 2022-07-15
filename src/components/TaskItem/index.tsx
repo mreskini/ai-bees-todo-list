@@ -7,9 +7,10 @@ import { filterTextLength } from "../../utilities/functions/filterTextLength"
 
 type Props = {
     task: Task
+    hasInteractions: boolean
 }
 
-const TaskItem: FC<Props> = ({ task }) => {
+const TaskItem: FC<Props> = ({ task, hasInteractions }) => {
     // States and Hooks
     const { token, title, description, priority } = task
     const { doneTaskByToken } = useTasks()
@@ -29,7 +30,9 @@ const TaskItem: FC<Props> = ({ task }) => {
     return (
         <Button
             className={taskStyles.item}
-            onClick={() => handleDetailsModalOpen(task)}
+            onClick={
+                hasInteractions ? () => handleDetailsModalOpen(task) : undefined
+            }
         >
             <Paper
                 variant="outlined"
@@ -64,22 +67,28 @@ const TaskItem: FC<Props> = ({ task }) => {
                                 }`}
                             ></div>
                         </div>
-                        <div className={taskStyles.actions}>
-                            <Button
-                                variant="contained"
-                                color="success"
-                                onClick={event => onDoneTaskClick(event, token)}
-                            >
-                                Done Task
-                            </Button>
-                            <Button
-                                variant="contained"
-                                color="info"
-                                onClick={event => onEditTaskClick(event, task)}
-                            >
-                                Edit Task
-                            </Button>
-                        </div>
+                        {hasInteractions && (
+                            <div className={taskStyles.actions}>
+                                <Button
+                                    variant="contained"
+                                    color="success"
+                                    onClick={event =>
+                                        onDoneTaskClick(event, token)
+                                    }
+                                >
+                                    Done Task
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    color="info"
+                                    onClick={event =>
+                                        onEditTaskClick(event, task)
+                                    }
+                                >
+                                    Edit Task
+                                </Button>
+                            </div>
+                        )}
                     </Grid>
                 </Grid>
             </Paper>
