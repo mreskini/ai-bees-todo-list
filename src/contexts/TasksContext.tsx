@@ -47,7 +47,9 @@ const initialContextValue = {
     editTask: () => undefined,
 }
 
-const TasksContext = createContext<TasksContextInterface>(initialContextValue)
+// We export this to use for the testing purposes
+export const TasksContext =
+    createContext<TasksContextInterface>(initialContextValue)
 
 // It's better to export a hook and use that instead of using the Context itself in other files.
 // (It's one of them best practices)
