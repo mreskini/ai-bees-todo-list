@@ -1,6 +1,7 @@
 # AI bees React Assignment
 
 ## A quick look over the app
+https://user-images.githubusercontent.com/56534469/179224956-25bfde3d-29da-45f1-a480-c4c7bcf0ea1c.mp4
 
 I'm using Netlify service, as the CI/CD system for this project, here is the link to production version of the app: https://polite-pudding-487867.netlify.app/
 
