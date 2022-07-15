@@ -24,6 +24,13 @@ const TaskItem: FC<Props> = ({ task }) => {
         handleEditModalOpen(task)
     }
 
+    const filterTextLength = (text: string) => {
+        let result = text.slice(0, 30)
+        if (text.length > 30) result += "..."
+
+        return result
+    }
+
     // Render
     return (
         <Button
@@ -41,10 +48,11 @@ const TaskItem: FC<Props> = ({ task }) => {
                     justifyContent="space-between"
                 >
                     <Grid>
-                        <div className={taskStyles.title}>{title}</div>
+                        <div className={taskStyles.title}>
+                            {filterTextLength(title)}
+                        </div>
                         <div className={taskStyles.description}>
-                            {description.slice(0, 30)}
-                            {description.length > 30 && "..."}
+                            {filterTextLength(description)}
                         </div>
                     </Grid>
                     <Grid>
