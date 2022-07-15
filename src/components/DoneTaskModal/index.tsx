@@ -26,70 +26,78 @@ const DoneTasksModal = () => {
                 <Box className={modalStyles.modal}>
                     <div className={modalStyles.subject}>Done Tasks</div>
                     <div>
-                        {doneTasksList.length === 0 && (
-                            <div className={styles.label}>
-                                No Done Tasks Found
-                            </div>
-                        )}
-                        {doneTasksList.map(
-                            ({ token, title, description, priority }) => {
-                                return (
-                                    <Paper
-                                        variant="outlined"
-                                        elevation={1}
-                                        key={token}
-                                        className={styles.item}
-                                    >
-                                        <Grid
-                                            display="flex"
-                                            alignItems="center"
-                                            justifyContent="space-between"
+                        <div className={styles.list}>
+                            {doneTasksList.length === 0 && (
+                                <div className={styles.label}>
+                                    No Done Tasks Found
+                                </div>
+                            )}
+                            {doneTasksList.map(
+                                ({ token, title, description, priority }) => {
+                                    return (
+                                        <Paper
+                                            variant="outlined"
+                                            elevation={1}
+                                            key={token}
+                                            className={styles.item}
                                         >
-                                            <Grid>
-                                                <div
-                                                    className={taskStyles.title}
-                                                >
-                                                    {title}
-                                                </div>
-                                                <div
-                                                    className={
-                                                        taskStyles.description
-                                                    }
-                                                >
-                                                    {description.slice(0, 30)}
-                                                    {description.length > 30 &&
-                                                        "..."}
-                                                </div>
-                                            </Grid>
-                                            <Grid>
-                                                <div
-                                                    className={
-                                                        taskStyles.priority
-                                                    }
-                                                >
-                                                    <div>{priority}</div>
+                                            <Grid
+                                                display="flex"
+                                                alignItems="center"
+                                                justifyContent="space-between"
+                                                padding={"2%"}
+                                            >
+                                                <Grid>
                                                     <div
-                                                        className={`${
-                                                            taskStyles.bullet
-                                                        } ${
-                                                            taskStyles[
-                                                                priority ===
-                                                                "HIGH"
-                                                                    ? "bullet-high"
-                                                                    : priority ===
-                                                                      "MEDIUM"
-                                                                    ? "bullet-mid"
-                                                                    : "bullet-low"
-                                                            ]
-                                                        }`}
-                                                    ></div>
-                                                </div>
+                                                        className={
+                                                            taskStyles.title
+                                                        }
+                                                    >
+                                                        {title}
+                                                    </div>
+                                                    <div
+                                                        className={
+                                                            taskStyles.description
+                                                        }
+                                                    >
+                                                        {description.slice(
+                                                            0,
+                                                            30
+                                                        )}
+                                                        {description.length >
+                                                            30 && "..."}
+                                                    </div>
+                                                </Grid>
+                                                <Grid>
+                                                    <div
+                                                        className={
+                                                            taskStyles.priority
+                                                        }
+                                                    >
+                                                        <div>{priority}</div>
+                                                        <div
+                                                            className={`${
+                                                                taskStyles.bullet
+                                                            } ${
+                                                                taskStyles[
+                                                                    priority ===
+                                                                    "HIGH"
+                                                                        ? "bullet-high"
+                                                                        : priority ===
+                                                                          "MEDIUM"
+                                                                        ? "bullet-mid"
+                                                                        : "bullet-low"
+                                                                ]
+                                                            }`}
+                                                        ></div>
+                                                    </div>
+                                                </Grid>
                                             </Grid>
-                                        </Grid>
-                                    </Paper>
-                                )
-                            }
-                        )}
+                                        </Paper>
+                                    )
+                                }
+                            )}
+                        </div>
                     </div>
                 </Box>
             </Modal>
