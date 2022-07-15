@@ -119,10 +119,6 @@ const TasksProvider: React.FC<Props> = ({ children }) => {
         setTasksList(updatedTasksList)
     }
 
-    useEffect(() => {
-        console.log(tasksList)
-    }, [tasksList])
-
     // Binding
     const value = {
         // States

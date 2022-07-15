@@ -110,3 +110,24 @@ Here's a shortlist of Jest advantages:
 ## Important note about testing
 
 Although this is a very simple and small application, but testing all the features (specially writing unit tests) can take a huge amount of time which is not the purpose of this assignment for sure. For the testing section, I tried to test different things to demo the different techniques and tricks. You can find Mock Components in `CreateTaskModal.test.tsx` test block, you can see how we are using the MockCreateTaskModal component to get rid of the Context API issues in the test block. In the same file, you can see how we can use the userEvent and fireEvent to make changes to the dom and evaluate the changes after that. In `TaskForm.test.tsx` other than the Mocking process that I mentioned earlier, you can see how we can test the UI elements easily using react testing library. So, I didn't go over all the features and test them and etc. I just tried to write some tests for some features but the other features are the same and we just need to copy and paste these scenarios to finish the whole testing process (Also due to the nature of this project, I could not demo some of techniques and etc).
+
+## Some other things to note
+
+-   I'm using an array to store all the tasks and using immutable methods like filter to update and make necessary changes like the below one:
+
+```js
+const updatedTasksList = tasksList.map(task => {
+    if (task.token === token) {
+        task.title = title
+        task.description = description
+        task.targets = targets
+        task.priority = priority
+    }
+    return task
+})
+setTasksList(updatedTasksList)
+```
+
+It's correct that we are using an method with O(n) but that won't be big deal as we are not updating this array very much. For example, if we were searching the array on every change of an input element, that would be an issue and might have caused some performance issues, but not for a simple search like this we use once in while. (The solution might be to use useMemo hook but it's not applicable for this case for sure)
+
+-   As we don't have any API call, timer and things like that, the useEffect hooks have no cleanup method at the end. So there won't be any "Update on Unmounted Components" issues.

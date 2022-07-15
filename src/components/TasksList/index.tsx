@@ -32,7 +32,13 @@ const TasksList = () => {
                 >
                     <Grid xs={8}>
                         {openTasksList.map((task, index) => {
-                            return <TaskItem task={task} key={index} />
+                            return (
+                                <TaskItem
+                                    task={task}
+                                    key={index}
+                                    hasInteractions={true}
+                                />
+                            )
                         })}
                     </Grid>
                     <FloatingAddButton />
