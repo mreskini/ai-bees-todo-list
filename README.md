@@ -129,6 +129,6 @@ const updatedTasksList = tasksList.map(task => {
 setTasksList(updatedTasksList)
 ```
 
-It's correct that we are using an method with O(n) but that won't be big deal as we are not updating this array very much. For example, if we were searching the array on every change of an input element, that would be an issue and might have caused some performance issues, but not for a simple search like this we use once in while. (The solution might be to use useMemo hook but it's not applicable for this case for sure)
+It's correct that we are using an method with O(n) time complexity but that won't be big deal as we are not updating this array very much. For example, if we were searching the array on every change of an input element, that would be an issue and might have caused some performance issues, but not for a simple search like this we use once in while. (The solution might be to use useMemo hook but it's not applicable for this case for sure)
 
 -   As we don't have any API call, timer and things like that, the useEffect hooks have no cleanup method at the end. So there won't be any "Update on Unmounted Components" issues.
